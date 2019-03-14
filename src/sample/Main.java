@@ -1,23 +1,30 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import controller.Controller;
+import datamodel.Book;
+import form.MainForm;
 
 public class Main extends Application {
-    private final String WINFORM_TITLE = "Subject domain with Dialog search";
-
-    private final int WINFORM_WIDTH = 1000;
-    private final int WINFORM_HEIGHT = 500;
+    private final String FORM_TITLE = "Subject domain with Dialog search";
+    private final int FORM_WIDTH = 1000;
+    private final int FORM_HEIGHT = 500;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setWidth(WINFORM_WIDTH);
-        primaryStage.setHeight(WINFORM_HEIGHT);
-        primaryStage.setTitle(WINFORM_TITLE);
+        ObservableList<Book> books = FXCollections.observableArrayList();
+        Controller controller = new Controller(books);
+        MainForm mainForm = new MainForm(controller, books);
 
-        MainForm mainForm = new MainForm();
+        primaryStage.setWidth(FORM_WIDTH);
+        primaryStage.setHeight(FORM_HEIGHT);
+        primaryStage.setTitle(FORM_TITLE);
+
         primaryStage.setScene(new Scene(mainForm.getVBox()));
 
         primaryStage.show();
