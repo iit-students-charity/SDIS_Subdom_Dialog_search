@@ -2,23 +2,31 @@ package form;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import sample.ParameterCondition;
 
 public class ParameterForm {
-    ParameterCondition condition;
+    private ParameterCondition condition;
 
     private TextField nameTxtField;
     private TextField firstNameTxtField;
     private TextField middleNameTxtField;
     private TextField lastNameTxtField;
     private TextField pubTxtField;
-    private TextField volCountTxtField;
     private TextField volCountTotalTxtField;
     private TextField cirTxtField;
+    private TextField countUpLimit;
+    private TextField countDownLimit;
+    private TextField countBorder;
 
-    VBox vBox;
+    private RadioButton less;
+    private RadioButton greater;
+    private ToggleGroup greaterOrLessTglGrp;
+
+    private VBox vBox;
 
 
     public ParameterForm(ParameterCondition condition) {
@@ -28,15 +36,26 @@ public class ParameterForm {
         middleNameTxtField = new TextField();
         lastNameTxtField = new TextField();
         pubTxtField = new TextField();
-        volCountTxtField = new TextField();
         volCountTotalTxtField = new TextField();
         cirTxtField = new TextField();
+        countUpLimit = new TextField();
+        countDownLimit = new TextField();
+        countBorder = new TextField();
+
+        less = new RadioButton(ContentText.LESS);
+        greater = new RadioButton(ContentText.GREATER);
+        less.setUserData(ContentText.LESS);
+        greater.setUserData(ContentText.GREATER);
+        greaterOrLessTglGrp = new ToggleGroup();
+        greaterOrLessTglGrp.getToggles().addAll(less, greater);
+        greaterOrLessTglGrp.selectToggle(less);
 
         vBox = createVBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
     }
 
+    // Box creating
     private VBox createVBox() {
         switch (condition) {
             case AUTHOR: {
@@ -63,60 +82,61 @@ public class ParameterForm {
     }
 
     private VBox createAuthorVBox() {
-        firstNameTxtField = new TextField();
-        middleNameTxtField = new TextField();
-        lastNameTxtField = new TextField();
-
-        Label firstNameLabel = new Label(FormContentText.FIRST_NAME);
-        Label middleNameLabel = new Label(FormContentText.MIDDLE_NAME);
-        Label lastNameLabel = new Label(FormContentText.LAST_NAME);
+        Label firstNameLabel = new Label(ContentText.FIRST_NAME);
+        Label middleNameLabel = new Label(ContentText.MIDDLE_NAME);
+        Label lastNameLabel = new Label(ContentText.LAST_NAME);
 
         return new VBox(
-                new GridComplexComponent(firstNameLabel, firstNameTxtField).getGridPane(),
-                new GridComplexComponent(middleNameLabel, middleNameTxtField).getGridPane(),
-                new GridComplexComponent(lastNameLabel, lastNameTxtField).getGridPane()
+                new TwoNodesGrid(firstNameLabel, firstNameTxtField).getGridPane(),
+                new TwoNodesGrid(middleNameLabel, middleNameTxtField).getGridPane(),
+                new TwoNodesGrid(lastNameLabel, lastNameTxtField).getGridPane()
         );
     }
 
     private VBox createPubAuthorVBox() {
         VBox vBox = createAuthorVBox();
+        Label pubLabel = new Label(ContentText.PUBLISHING);
 
-        pubTxtField = new TextField();
-        Label pubLabel = new Label(FormContentText.PUBLISHING);
-
-        vBox.getChildren().add(new GridComplexComponent(pubLabel, pubTxtField).getGridPane());
+        vBox.getChildren().add(new TwoNodesGrid(pubLabel, pubTxtField).getGridPane());
 
         return vBox;
     }
 
     private VBox createVolCountVBox() {
-        volCountTxtField = new TextField();
-        Label volCountLabel = new Label(FormContentText.VOLUME_COUNT);
+        Label upLimit = new Label(ContentText.UP_LIMIT);
+        Label downLimit = new Label(ContentText.DOWN_LIMIT);
 
-        return new VBox(new GridComplexComponent(volCountLabel, volCountTxtField).getGridPane());
+        return new VBox(
+                new TwoNodesGrid(downLimit, countDownLimit).getGridPane(),
+                new TwoNodesGrid(upLimit, countUpLimit).getGridPane()
+        );
     }
 
     private VBox createNameVBox() {
-        nameTxtField = new TextField();
-        Label nameLabel = new Label(FormContentText.NAME);
+        Label nameLabel = new Label(ContentText.NAME);
 
-        return new VBox(new GridComplexComponent(nameLabel, nameTxtField).getGridPane());
+        return new VBox(new TwoNodesGrid(nameLabel, nameTxtField).getGridPane());
     }
 
     private VBox createCirculationVBox() {
-        cirTxtField = new TextField();
-        Label cirLabel = new Label(FormContentText.CIRCULATION);
+        Label cirLabel = new Label(ContentText.BORDER);
 
-        return new VBox(new GridComplexComponent(cirLabel, cirTxtField).getGridPane());
+        return new VBox(
+                new TwoNodesGrid(cirLabel, cirTxtField).getGridPane(),
+                new TwoNodesGrid(less, greater).getGridPane()
+        );
     }
 
     private VBox createVolCountTotalVBox() {
-        volCountTotalTxtField = new TextField();
-        Label volCountTotalLabel = new Label(FormContentText.VOLUME_COUNT_TOTAL);
+        Label volCountTotalLabel = new Label(ContentText.BORDER);
 
-        return new VBox(new GridComplexComponent(volCountTotalLabel, volCountTotalTxtField).getGridPane());
+        return new VBox(
+                new TwoNodesGrid(volCountTotalLabel, volCountTotalTxtField).getGridPane(),
+                new TwoNodesGrid(less, greater).getGridPane()
+        );
     }
 
+    // Field text' getters
     public String getNameTxt() {
         return nameTxtField.getText();
     }
@@ -137,16 +157,29 @@ public class ParameterForm {
         return pubTxtField.getText();
     }
 
-    public String getVolCountTxt() {
-        return volCountTxtField.getText();
-    }
-
     public String getVolCountTotalTxt() {
         return volCountTotalTxtField.getText();
     }
 
     public String getCirTxt() {
         return cirTxtField.getText();
+    }
+
+    public String getCountUpLimitTxt() {
+        return countUpLimit.getText();
+    }
+
+    public String getCountDownLimitTxt() {
+        return countDownLimit.getText();
+    }
+
+    public String getCountBorderTxt() {
+        return countBorder.getText();
+    }
+
+
+    public ToggleGroup getGreaterOrLessTglGrp() {
+        return greaterOrLessTglGrp;
     }
 
     public VBox getVBox() {

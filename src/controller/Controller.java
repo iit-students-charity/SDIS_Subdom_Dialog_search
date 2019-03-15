@@ -10,13 +10,13 @@ public class Controller {
         this.books = books;
     }
 
-    public void add(Book book) {
+    public void addBook(Book book) {
         if (!isBookExist(book)) {
             books.add(book);
         }
     }
 
-    public void remove(ObservableList<Book> booksToRemove) {
+    public void removeBook(ObservableList<Book> booksToRemove) {
         books.removeAll(booksToRemove);
     }
 

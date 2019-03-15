@@ -9,15 +9,21 @@ public class SearchStrategy {
     private ObservableList<Book> books;
     private ParameterCondition condition;
     private Book exampleBook;
-    private int volCountUp;
-    private int volCOuntDown;
+    private int countUpLimit;
+    private int countDownLimit;
+    private int countBorder;
+    private boolean isGreaterThanBorder;
 
 
-
-    public SearchStrategy(ObservableList<Book> books, ParameterCondition condition, Book exampleBook) {
+    public SearchStrategy(ObservableList<Book> books, ParameterCondition condition, Book exampleBook,
+                          int countUpLimit, int countDownLimit, int countBorder, boolean isGreaterThanBorder) {
         this.books = books;
         this.condition = condition;
         this.exampleBook = exampleBook;
+        this.countUpLimit = countUpLimit;
+        this.countDownLimit = countDownLimit;
+        this.countBorder = countBorder;
+        this.isGreaterThanBorder = isGreaterThanBorder;
     }
 
     public ObservableList<Book> find() {
@@ -49,7 +55,8 @@ public class SearchStrategy {
             }
             case VOLUME_COUNT: {
                 for (Book book : books) {
-                    if (book.getVolumeCount() == exampleBook.getVolumeCount()) {
+                    if (book.getVolumeCount() <= countUpLimit && book.getVolumeCount() >= countDownLimit) {
+                        System.out.println(book.getVolumeCount());
                         foundBooks.add(book);
                     }
                 }
@@ -66,18 +73,34 @@ public class SearchStrategy {
                 break;
             }
             case CIRCULATION: {
-                for (Book book : books) {
-                    if (book.getCirculation() == exampleBook.getCirculation()) {
-                        foundBooks.add(book);
+                if (isGreaterThanBorder) {
+                    for (Book book : books) {
+                        if (book.getCirculation() > countBorder) {
+                            foundBooks.add(book);
+                        }
+                    }
+                } else {
+                    for (Book book : books) {
+                        if (book.getCirculation() < countBorder) {
+                            foundBooks.add(book);
+                        }
                     }
                 }
 
                 break;
             }
             case VOLUME_COUNT_TOTAL: {
-                for (Book book : books) {
-                    if (book.getVolumeCountTotal() == exampleBook.getVolumeCountTotal()) {
-                        foundBooks.add(book);
+                if (isGreaterThanBorder) {
+                    for (Book book : books) {
+                        if (book.getVolumeCountTotal() > countBorder) {
+                            foundBooks.add(book);
+                        }
+                    }
+                } else {
+                    for (Book book : books) {
+                        if (book.getVolumeCountTotal() < countBorder) {
+                            foundBooks.add(book);
+                        }
                     }
                 }
 

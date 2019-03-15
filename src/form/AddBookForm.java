@@ -40,24 +40,24 @@ public class AddBookForm {
         volCountTxtField = new TextField();
         cirTxtField = new TextField();
 
-        nameLabel = new Label(FormContentText.NAME);
-        firstNameLabel = new Label(FormContentText.FIRST_NAME);
-        middleNameLabel = new Label(FormContentText.MIDDLE_NAME);
-        lastNameLabel = new Label(FormContentText.LAST_NAME);
-        pubLabel = new Label(FormContentText.PUBLISHING);
-        volCountLabel = new Label(FormContentText.VOLUME_COUNT);
-        cirLabel = new Label(FormContentText.CIRCULATION);
+        nameLabel = new Label(ContentText.NAME);
+        firstNameLabel = new Label(ContentText.FIRST_NAME);
+        middleNameLabel = new Label(ContentText.MIDDLE_NAME);
+        lastNameLabel = new Label(ContentText.LAST_NAME);
+        pubLabel = new Label(ContentText.PUBLISHING);
+        volCountLabel = new Label(ContentText.VOLUME_COUNT);
+        cirLabel = new Label(ContentText.CIRCULATION);
     }
 
     private VBox createVBox() {
         return new VBox(
-                new GridComplexComponent(nameLabel, nameTxtField).getGridPane(),
-                new GridComplexComponent(firstNameLabel, firstNameTxtField).getGridPane(),
-                new GridComplexComponent(middleNameLabel, middleNameTxtField).getGridPane(),
-                new GridComplexComponent(lastNameLabel, lastNameTxtField).getGridPane(),
-                new GridComplexComponent(pubLabel, pubTxtField).getGridPane(),
-                new GridComplexComponent(volCountLabel, volCountTxtField).getGridPane(),
-                new GridComplexComponent(cirLabel, cirTxtField).getGridPane()
+                new TwoNodesGrid(nameLabel, nameTxtField).getGridPane(),
+                new TwoNodesGrid(firstNameLabel, firstNameTxtField).getGridPane(),
+                new TwoNodesGrid(middleNameLabel, middleNameTxtField).getGridPane(),
+                new TwoNodesGrid(lastNameLabel, lastNameTxtField).getGridPane(),
+                new TwoNodesGrid(pubLabel, pubTxtField).getGridPane(),
+                new TwoNodesGrid(volCountLabel, volCountTxtField).getGridPane(),
+                new TwoNodesGrid(cirLabel, cirTxtField).getGridPane()
         );
     }
 

@@ -1,6 +1,6 @@
 package form;
 
-public class FormContentText {
+public class ContentText {
     public static final String NAME = "Name";
     public static final String AUTHOR = "Author";
     public static final String FIRST_NAME = "First name";
@@ -31,5 +31,9 @@ public class FormContentText {
     public static final String PREV_PAGE = "<";
     public static final String FIRST_PAGE = "<<";
     public static final String LAST_PAGE = ">>";
-
+    public static final String UP_LIMIT = "Up limit";
+    public static final String DOWN_LIMIT = "Down limit";
+    public static final String BORDER = "Border";
+    public static final String LESS = "Less";
+    public static final String GREATER = "Greater";
 }

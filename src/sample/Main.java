@@ -16,7 +16,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         ObservableList<Book> books = FXCollections.observableArrayList();
         Controller controller = new Controller(books);
         MainForm mainForm = new MainForm(controller, books);

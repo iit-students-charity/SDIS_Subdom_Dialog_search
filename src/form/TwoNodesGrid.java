@@ -2,20 +2,19 @@ package form;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
-public class GridComplexComponent {
-    private Label label;
-    private TextField textField;
+public class TwoNodesGrid {
+    private Node leftNode;
+    private Node rightNode;
 
     private GridPane gridPane;
 
-    public GridComplexComponent(Label label, TextField textField) {
-        this.label = label;
-        this.textField = textField;
+    public TwoNodesGrid(Node leftNode, Node rightNode) {
+        this.leftNode = leftNode;
+        this.rightNode = rightNode;
 
         gridPane = createGridPane();
     }
@@ -29,11 +28,11 @@ public class GridComplexComponent {
 
         int insets = 8;
         gridPane.getColumnConstraints().addAll(column, column);
-        GridPane.setMargin(label, new Insets(insets));
-        GridPane.setMargin(textField, new Insets(insets));
+        GridPane.setMargin(leftNode, new Insets(insets));
+        GridPane.setMargin(rightNode, new Insets(insets));
 
-        gridPane.add(label, 0,0);
-        gridPane.add(textField,1,0);
+        gridPane.add(leftNode, 0,0);
+        gridPane.add(rightNode,1,0);
 
         return gridPane;
     }

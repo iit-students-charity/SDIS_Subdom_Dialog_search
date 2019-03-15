@@ -31,12 +31,12 @@ public class PageTable {
         bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         bookTable.setItems(books);
 
-        TableColumn<Book, String> nameCol = new TableColumn<>(FormContentText.NAME);
-        TableColumn<Book, String> authorCol = new TableColumn<>(FormContentText.AUTHOR);
-        TableColumn<Book, String> pubCol = new TableColumn<>(FormContentText.PUBLISHING);
-        TableColumn<Book, Integer> volCountCol = new TableColumn<>(FormContentText.VOLUME_COUNT);
-        TableColumn<Book, Integer> cirCol = new TableColumn<>(FormContentText.CIRCULATION);
-        TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>(FormContentText.VOLUME_COUNT_TOTAL);
+        TableColumn<Book, String> nameCol = new TableColumn<>(ContentText.NAME);
+        TableColumn<Book, String> authorCol = new TableColumn<>(ContentText.AUTHOR);
+        TableColumn<Book, String> pubCol = new TableColumn<>(ContentText.PUBLISHING);
+        TableColumn<Book, Integer> volCountCol = new TableColumn<>(ContentText.VOLUME_COUNT);
+        TableColumn<Book, Integer> cirCol = new TableColumn<>(ContentText.CIRCULATION);
+        TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>(ContentText.VOLUME_COUNT_TOTAL);
 
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -58,11 +58,11 @@ public class PageTable {
     }
 
     private HBox createPaginationBox() {
-        Button nextPage = new Button(FormContentText.NEXT_PAGE);
-        Button prevPage = new Button(FormContentText.PREV_PAGE);
+        Button nextPage = new Button(ContentText.NEXT_PAGE);
+        Button prevPage = new Button(ContentText.PREV_PAGE);
         Label pageNumerator = new Label("1/1");
-        Button firstPage = new Button(FormContentText.FIRST_PAGE);
-        Button lastPage = new Button(FormContentText.LAST_PAGE);
+        Button firstPage = new Button(ContentText.FIRST_PAGE);
+        Button lastPage = new Button(ContentText.LAST_PAGE);
 
         HBox hBox = new HBox(firstPage, prevPage, pageNumerator, nextPage, lastPage);
         hBox.setAlignment(Pos.CENTER);
