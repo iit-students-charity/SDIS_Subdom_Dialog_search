@@ -34,6 +34,7 @@ public class ParameterForm {
 
         vBox = createVBox();
         vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
     }
 
     private VBox createVBox() {
@@ -66,9 +67,9 @@ public class ParameterForm {
         middleNameTxtField = new TextField();
         lastNameTxtField = new TextField();
 
-        Label firstNameLabel = new Label("First name");
-        Label middleNameLabel = new Label("Middle name");
-        Label lastNameLabel = new Label("Last name");
+        Label firstNameLabel = new Label(FormContentText.FIRST_NAME);
+        Label middleNameLabel = new Label(FormContentText.MIDDLE_NAME);
+        Label lastNameLabel = new Label(FormContentText.LAST_NAME);
 
         return new VBox(
                 new GridComplexComponent(firstNameLabel, firstNameTxtField).getGridPane(),
@@ -81,7 +82,7 @@ public class ParameterForm {
         VBox vBox = createAuthorVBox();
 
         pubTxtField = new TextField();
-        Label pubLabel = new Label("Publishing");
+        Label pubLabel = new Label(FormContentText.PUBLISHING);
 
         vBox.getChildren().add(new GridComplexComponent(pubLabel, pubTxtField).getGridPane());
 
@@ -90,28 +91,28 @@ public class ParameterForm {
 
     private VBox createVolCountVBox() {
         volCountTxtField = new TextField();
-        Label volCountLabel = new Label("Volume count");
+        Label volCountLabel = new Label(FormContentText.VOLUME_COUNT);
 
         return new VBox(new GridComplexComponent(volCountLabel, volCountTxtField).getGridPane());
     }
 
     private VBox createNameVBox() {
         nameTxtField = new TextField();
-        Label nameLabel = new Label("Name");
+        Label nameLabel = new Label(FormContentText.NAME);
 
         return new VBox(new GridComplexComponent(nameLabel, nameTxtField).getGridPane());
     }
 
     private VBox createCirculationVBox() {
         cirTxtField = new TextField();
-        Label cirLabel = new Label("Circulation");
+        Label cirLabel = new Label(FormContentText.CIRCULATION);
 
         return new VBox(new GridComplexComponent(cirLabel, cirTxtField).getGridPane());
     }
 
     private VBox createVolCountTotalVBox() {
         volCountTotalTxtField = new TextField();
-        Label volCountTotalLabel = new Label("Volume count total");
+        Label volCountTotalLabel = new Label(FormContentText.VOLUME_COUNT_TOTAL);
 
         return new VBox(new GridComplexComponent(volCountTotalLabel, volCountTotalTxtField).getGridPane());
     }

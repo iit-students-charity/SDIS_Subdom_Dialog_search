@@ -23,6 +23,7 @@ public class PageTable {
         paginationBox = createPaginationBox();
 
         rootVBox = new VBox(bookTable, paginationBox);
+        rootVBox.setSpacing(10);
     }
 
     public TableView<Book> createBookTable() {
@@ -30,12 +31,12 @@ public class PageTable {
         bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         bookTable.setItems(books);
 
-        TableColumn<Book, String> nameCol = new TableColumn<>("Name");
-        TableColumn<Book, String> authorCol = new TableColumn<>("Author");
-        TableColumn<Book, String> pubCol = new TableColumn<>("Publishing");
-        TableColumn<Book, Integer> volCountCol = new TableColumn<>("Vol. count");
-        TableColumn<Book, Integer> cirCol = new TableColumn<>("Circulation");
-        TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>("Total vol. count");
+        TableColumn<Book, String> nameCol = new TableColumn<>(FormContentText.NAME);
+        TableColumn<Book, String> authorCol = new TableColumn<>(FormContentText.AUTHOR);
+        TableColumn<Book, String> pubCol = new TableColumn<>(FormContentText.PUBLISHING);
+        TableColumn<Book, Integer> volCountCol = new TableColumn<>(FormContentText.VOLUME_COUNT);
+        TableColumn<Book, Integer> cirCol = new TableColumn<>(FormContentText.CIRCULATION);
+        TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>(FormContentText.VOLUME_COUNT_TOTAL);
 
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -57,17 +58,21 @@ public class PageTable {
     }
 
     private HBox createPaginationBox() {
-        Button nextPage = new Button(">");
-        Button prevPage = new Button("<");
+        Button nextPage = new Button(FormContentText.NEXT_PAGE);
+        Button prevPage = new Button(FormContentText.PREV_PAGE);
         Label pageNumerator = new Label("1/1");
-        Button firstPage = new Button("<<");
-        Button lastPage = new Button(">>");
+        Button firstPage = new Button(FormContentText.FIRST_PAGE);
+        Button lastPage = new Button(FormContentText.LAST_PAGE);
 
         HBox hBox = new HBox(firstPage, prevPage, pageNumerator, nextPage, lastPage);
         hBox.setAlignment(Pos.CENTER);
         hBox.setSpacing(5);
 
         return hBox;
+    }
+
+    public TableView<Book> getBookTable() {
+        return bookTable;
     }
 
     public VBox getRootVBox() {

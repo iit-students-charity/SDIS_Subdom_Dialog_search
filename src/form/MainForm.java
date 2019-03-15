@@ -2,7 +2,6 @@ package form;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -46,28 +45,45 @@ public class MainForm {
     }
 
     private Menu createFileMenu() {
-        Menu fileMenu = new Menu("File");
+        Menu fileMenu = new Menu(FormContentText.FILE);
 
-        MenuItem newFile = new MenuItem("New");
-        MenuItem openFile = new MenuItem("Open");
-        MenuItem saveFile = new MenuItem("Save");
+        MenuItem newFile = new MenuItem(FormContentText.NEW);
+        MenuItem generate = new MenuItem(FormContentText.GENERATE);
+        MenuItem openFile = new MenuItem(FormContentText.OPEN);
+        MenuItem saveFile = new MenuItem(FormContentText.SAVE);
 
-        fileMenu.getItems().addAll(newFile, openFile, saveFile);
+        newFile.setOnAction(e -> {
+            books.clear();
+        });
+
+        saveFile.setOnAction(e -> {
+
+        });
+
+        openFile.setOnAction(e -> {
+
+        });
+
+        saveFile.setOnAction(e -> {
+
+        });
+
+        fileMenu.getItems().addAll(newFile, generate, openFile, saveFile);
 
         return fileMenu;
     }
 
     private Menu createEditMenu() {
-        Menu editMenu = new Menu("Edit");
+        Menu editMenu = new Menu(FormContentText.EDIT);
 
-        MenuItem add = new MenuItem("Add");
-        Menu remove = new Menu("Remove");
-        MenuItem byAuthor = new MenuItem("Author");
-        MenuItem byPubAndAuthor = new MenuItem("Publishing & author");
-        MenuItem byVolCount = new MenuItem("Volume count");
-        MenuItem byName = new MenuItem("Name");
-        MenuItem byCir = new MenuItem("Circulation");
-        MenuItem byVolCountTotal = new MenuItem("Volume count total");
+        MenuItem add = new MenuItem(FormContentText.ADD);
+        Menu remove = new Menu(FormContentText.REMOVE);
+        MenuItem byAuthor = new MenuItem(FormContentText.AUTHOR);
+        MenuItem byPubAndAuthor = new MenuItem(FormContentText.PUBLISHING_AUTHOR);
+        MenuItem byVolCount = new MenuItem(FormContentText.VOLUME_COUNT);
+        MenuItem byName = new MenuItem(FormContentText.NAME);
+        MenuItem byCir = new MenuItem(FormContentText.CIRCULATION);
+        MenuItem byVolCountTotal = new MenuItem(FormContentText.VOLUME_COUNT_TOTAL);
 
         remove.getItems().addAll(byAuthor, byPubAndAuthor, byVolCount, byName, byCir, byVolCountTotal);
 
@@ -105,14 +121,14 @@ public class MainForm {
     }
 
     private Menu createSearchMenu() {
-        Menu searchMenu = new Menu("Search");
+        Menu searchMenu = new Menu(FormContentText.SEARCH);
 
-        MenuItem byAuthor = new MenuItem("Author");
-        MenuItem byPubAndAuthor = new MenuItem("Publishing & author");
-        MenuItem byVolCount = new MenuItem("Volume count");
-        MenuItem byName = new MenuItem("Name");
-        MenuItem byCir = new MenuItem("Circulation");
-        MenuItem byVolCountTotal = new MenuItem("Volume count total");
+        MenuItem byAuthor = new MenuItem(FormContentText.AUTHOR);
+        MenuItem byPubAndAuthor = new MenuItem(FormContentText.PUBLISHING_AUTHOR);
+        MenuItem byVolCount = new MenuItem(FormContentText.VOLUME_COUNT);
+        MenuItem byName = new MenuItem(FormContentText.NAME);
+        MenuItem byCir = new MenuItem(FormContentText.CIRCULATION);
+        MenuItem byVolCountTotal = new MenuItem(FormContentText.VOLUME_COUNT_TOTAL);
 
         byAuthor.setOnAction(e -> {
             createSearchBookDialog(ParameterCondition.AUTHOR).show();
@@ -143,29 +159,16 @@ public class MainForm {
         return searchMenu;
     }
 
-    private ToolBar createToolBar() {
-        ToolBar toolBar = new ToolBar();
+    private Menu createRemoveMenu() {
+        Menu remove = new Menu(FormContentText.REMOVE);
+        MenuItem byAuthor = new MenuItem(FormContentText.AUTHOR);
+        MenuItem byPubAndAuthor = new MenuItem(FormContentText.PUBLISHING_AUTHOR);
+        MenuItem byVolCount = new MenuItem(FormContentText.VOLUME_COUNT);
+        MenuItem byName = new MenuItem(FormContentText.NAME);
+        MenuItem byCir = new MenuItem(FormContentText.CIRCULATION);
+        MenuItem byVolCountTotal = new MenuItem(FormContentText.VOLUME_COUNT_TOTAL);
 
-        Button newFile = new Button("New");
-        Button openFile = new Button("Open");
-        Button saveFile = new Button("Save");
-        Button search = new Button("Search");
-        Button add = new Button("Add");
-        MenuButton remove = new MenuButton("Remove");
-        MenuItem byAuthor = new MenuItem("Author");
-        MenuItem byPubAndAuthor = new MenuItem("Publishing & author");
-        MenuItem byVolCount = new MenuItem("Volume count");
-        MenuItem byName = new MenuItem("Name");
-        MenuItem byCir = new MenuItem("Circulation");
-        MenuItem byVolCountTotal = new MenuItem("Volume count total");
-
-        toolBar.getItems().addAll(newFile, openFile, saveFile);
-        toolBar.getItems().add(new Separator());
-        toolBar.getItems().addAll(search, add, remove);
-
-        add.setOnAction(e -> {
-            createAddBookDialog().show();
-        });
+        remove.getItems().addAll(byAuthor, byPubAndAuthor, byVolCount, byName, byCir, byVolCountTotal);
 
         byAuthor.setOnAction(e -> {
             createRemoveBookDialog(ParameterCondition.AUTHOR).show();
@@ -191,7 +194,28 @@ public class MainForm {
             createRemoveBookDialog(ParameterCondition.VOLUME_COUNT_TOTAL).show();
         });
 
-        remove.getItems().addAll(byAuthor, byPubAndAuthor, byVolCount, byName, byCir, byVolCountTotal);
+        return remove;
+    }
+
+    private ToolBar createToolBar() {
+        ToolBar toolBar = new ToolBar();
+
+        Button newFile = new Button(FormContentText.NEW);
+        Button openFile = new Button(FormContentText.OPEN);
+        Button saveFile = new Button(FormContentText.SAVE);
+        Button add = new Button(FormContentText.ADD);
+        MenuButton search = new MenuButton(FormContentText.SEARCH);
+        MenuButton remove = new MenuButton(FormContentText.REMOVE);
+        search.getItems().addAll(createSearchMenu().getItems());
+        remove.getItems().addAll(createRemoveMenu().getItems());
+
+        toolBar.getItems().addAll(newFile, openFile, saveFile);
+        toolBar.getItems().add(new Separator());
+        toolBar.getItems().addAll(search, add, remove);
+
+        add.setOnAction(e -> {
+            createAddBookDialog().show();
+        });
 
         return toolBar;
     }
@@ -199,9 +223,9 @@ public class MainForm {
     private Alert createAddBookDialog() {
         AddBookForm addBookForm = new AddBookForm();
 
-        Alert addBookAlert = createEmptyDialog("Add", addBookForm.getVBox());
+        Alert addBookAlert = createEmptyDialog(FormContentText.ADD, addBookForm.getVBox());
 
-        ButtonType ADD = new ButtonType("Add");
+        ButtonType ADD = new ButtonType(FormContentText.ADD);
         addBookAlert.getDialogPane().getButtonTypes().add(ADD);
         Button addButton = (Button) addBookAlert.getDialogPane().lookupButton(ADD);
         addButton.setOnAction(e -> {
@@ -228,7 +252,7 @@ public class MainForm {
                     controller.add(book);
                 }
             } catch (Exception ex) {
-                Alert info = createEmptyDialog("Error", new Label("The entered data isn't valid"));
+                Alert info = createEmptyDialog(FormContentText.ERROR, new Label(FormContentText.INVALID_INPUT_DATA));
                 info.getButtonTypes().add(ButtonType.OK);
                 info.show();
             }
@@ -240,16 +264,17 @@ public class MainForm {
     private Alert createRemoveBookDialog(ParameterCondition condition) {
         ParameterForm removeBookForm = new ParameterForm(condition);
 
-        Alert removeBookAlert = createEmptyDialog("Remove", removeBookForm.getVBox());
+        Alert removeBookAlert = createEmptyDialog(FormContentText.REMOVE, removeBookForm.getVBox());
 
-        ButtonType REMOVE = new ButtonType("Remove");
+        ButtonType REMOVE = new ButtonType(FormContentText.REMOVE);
         removeBookAlert.getDialogPane().getButtonTypes().add(REMOVE);
         Button removeButton = (Button) removeBookAlert.getDialogPane().lookupButton(REMOVE);
         removeButton.setOnAction(e -> {
             ObservableList<Book> foundBooks = new SearchStrategy(books, condition, generateValidBook(removeBookForm)).find();
             controller.remove(foundBooks);
 
-            Alert info = createEmptyDialog("Removed info", new Label("Removed: " + String.valueOf(foundBooks.size())));
+            Alert info = createEmptyDialog(FormContentText.REMOVED + FormContentText.INFO,
+                    new Label(FormContentText.REMOVED + ": " + String.valueOf(foundBooks.size())));
             info.getButtonTypes().add(ButtonType.OK);
             info.show();
         });
@@ -260,16 +285,16 @@ public class MainForm {
     private Alert createSearchBookDialog(ParameterCondition condition) {
         ParameterForm searchBookForm = new ParameterForm(condition);
 
-        TableView<Book> bookTable = new PageTable(FXCollections.observableArrayList()).createBookTable();
-        Button find = new Button("Find");
+        PageTable pageTable = new PageTable(FXCollections.observableArrayList());
+        Button find = new Button(FormContentText.FIND);
         find.setOnAction(e -> {
             ObservableList<Book> foundBooks = new SearchStrategy(books, condition, generateValidBook(searchBookForm)).find();
-            bookTable.setItems(foundBooks);
+            pageTable.getBookTable().setItems(foundBooks);
         });
 
-        searchBookForm.getVBox().getChildren().addAll(bookTable, find);
+        searchBookForm.getVBox().getChildren().addAll(pageTable.getRootVBox(), find);
 
-        Alert findBookAlert = createEmptyDialog("Search", searchBookForm.getVBox());
+        Alert findBookAlert = createEmptyDialog(FormContentText.SEARCH, searchBookForm.getVBox());
         findBookAlert.getButtonTypes().add(ButtonType.CLOSE);
 
         return findBookAlert;
@@ -299,11 +324,11 @@ public class MainForm {
         int cir = Pattern.matches(regex, cirString) ? Integer.parseInt(cirString) : 0;
         int volCountTotal = Pattern.matches(regex, volCountTotalString) ? Integer.parseInt(volCountTotalString) : 0;
 
-        name = (name.equals("")) ? " " : name;
-        firstName = (firstName.equals("")) ? " " : firstName;
-        middleName = (middleName.equals("")) ? " " : middleName;
-        lastName = (lastName.equals("")) ? " " : lastName;
-        publishing = (publishing.equals("")) ? " " : publishing;
+        name = (name.equals(FormContentText.EMPTY_STRING)) ? FormContentText.WHITE_SPACE : name;
+        firstName = (firstName.equals(FormContentText.EMPTY_STRING)) ? FormContentText.WHITE_SPACE : firstName;
+        middleName = (middleName.equals(FormContentText.EMPTY_STRING)) ? FormContentText.WHITE_SPACE : middleName;
+        lastName = (lastName.equals(FormContentText.EMPTY_STRING)) ? FormContentText.WHITE_SPACE : lastName;
+        publishing = (publishing.equals(FormContentText.EMPTY_STRING)) ? FormContentText.WHITE_SPACE : publishing;
 
         Book validBook = new Book(name, firstName, middleName, lastName, publishing, volCount, cir);
         validBook.setVolumeCountTotal(volCountTotal);

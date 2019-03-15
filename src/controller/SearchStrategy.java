@@ -9,6 +9,9 @@ public class SearchStrategy {
     private ObservableList<Book> books;
     private ParameterCondition condition;
     private Book exampleBook;
+    private int volCountUp;
+    private int volCOuntDown;
+
 
 
     public SearchStrategy(ObservableList<Book> books, ParameterCondition condition, Book exampleBook) {
