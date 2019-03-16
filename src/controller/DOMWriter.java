@@ -1,7 +1,6 @@
 package controller;
 
 import datamodel.Book;
-import form.ParameterForm;
 import javafx.collections.ObservableList;
 
 import org.w3c.dom.Document;
@@ -23,6 +22,9 @@ public class DOMWriter {
     private static final String BOOK = "book";
     private static final String NAME = "name";
     private static final String AUTHOR = "author";
+    private static final String LAST_NAME = "last_mame";
+    private static final String FIRST_NAME = "first_name";
+    private static final String MIDDLE_NAME = "middle_name";
     private static final String PUBLISHING = "publishing";
     private static final String VOLUME_COUNT = "volume_count";
     private static final String CIRCULATION = "circulation";
@@ -54,18 +56,32 @@ public class DOMWriter {
 
         for (Book book : books) {
             Element name = document.createElement(NAME);
+
+            Element lastName = document.createElement(LAST_NAME);
+            Element firstName = document.createElement(FIRST_NAME);
+            Element middleName = document.createElement(MIDDLE_NAME);
             Element author = document.createElement(AUTHOR);
+
             Element publishing = document.createElement(PUBLISHING);
             Element volCount = document.createElement(VOLUME_COUNT);
             Element cir = document.createElement(CIRCULATION);
             Element volCountTotal = document.createElement(VOLUME_COUNT_TOTAL);
 
+
             name.appendChild(document.createTextNode(book.getName()));
-            author.appendChild(document.createTextNode(book.getAuthor()));
+
+            lastName.appendChild(document.createTextNode(book.getLastName()));
+            firstName.appendChild(document.createTextNode(book.getFirstName()));
+            middleName.appendChild(document.createTextNode(book.getMiddleName()));
+            author.appendChild(lastName);
+            author.appendChild(firstName);
+            author.appendChild(middleName);
+
             publishing.appendChild(document.createTextNode(book.getPublishing()));
             volCount.appendChild(document.createTextNode(String.valueOf(book.getVolumeCount())));
             cir.appendChild(document.createTextNode(String.valueOf(book.getCirculation())));
             volCountTotal.appendChild(document.createTextNode(String.valueOf(book.getVolumeCountTotal())));
+
 
             Element bookNode = document.createElement(BOOK);
             bookNode.appendChild(name);

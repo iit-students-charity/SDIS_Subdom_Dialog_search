@@ -14,6 +14,14 @@ public class Controller {
         books.clear();
     }
 
+    public void openFile(String filePath) {
+        new SAXReader(books, filePath).read();
+    }
+
+    public void saveFile(String filePath) {
+        new DOMWriter(books, filePath).write();
+    }
+
     public void addBook(Book book) {
         if (isBookExist(book)) {
             return;
@@ -24,15 +32,6 @@ public class Controller {
     public void removeBook(ObservableList<Book> booksToRemove) {
         books.removeAll(booksToRemove);
     }
-
-    public void openFile() {
-
-    }
-
-    public void saveFile(String filePath) {
-        new DOMWriter(books, filePath).write();
-    }
-
 
     private boolean isBookExist(Book book) {
         for (Book curBook : books) {

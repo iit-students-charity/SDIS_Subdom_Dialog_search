@@ -63,21 +63,31 @@ public class MainForm {
         });
 
         openFile.setOnAction(e -> {
+            FileChooser openFileChooser = new FileChooser();
+            openFileChooser.setTitle(Constant.OPEN);
+            openFileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("XML files", "*.xml"),
+                    new FileChooser.ExtensionFilter("All files", "*.*")
+            );
+            File selectedFile = openFileChooser.showOpenDialog(ownerStage);
 
+            if (selectedFile != null) {
+                controller.openFile(selectedFile.getAbsolutePath());
+            }
         });
 
         saveFile.setOnAction(e -> {
             FileChooser saveFileChooser = new FileChooser();
             saveFileChooser.setTitle(Constant.SAVE);
-            saveFileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                    new FileChooser.ExtensionFilter("XML files", "*.xml"),
+            File selectedFile = saveFileChooser.showSaveDialog(ownerStage);
+            saveFileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("All files", "*.*")
             );
-            File selectedFile = saveFileChooser.showSaveDialog(ownerStage);
-            System.out.println(selectedFile.getAbsolutePath());
 
-            controller.saveFile(selectedFile.getAbsolutePath());
+            if (selectedFile != null) {
+                controller.saveFile(selectedFile.getAbsolutePath());
+            }
         });
 
         fileMenu.getItems().addAll(newFile, generate, openFile, saveFile);
