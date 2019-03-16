@@ -8,8 +8,11 @@ import javafx.scene.layout.VBox;
 import controller.SearchStrategy;
 import datamodel.Book;
 import controller.Controller;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import sample.ParameterCondition;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
 public class MainForm {
@@ -18,11 +21,13 @@ public class MainForm {
     private VBox pageTable;
 
     private VBox vBox;
+    private Stage ownerStage;
+
     private Controller controller;
     private ObservableList<Book> books;
 
 
-    public MainForm(Controller controller, ObservableList<Book> books) {
+    public MainForm(Controller controller, ObservableList<Book> books, Stage ownerStage) {
         this.controller = controller;
         this.books = books;
 
@@ -31,6 +36,7 @@ public class MainForm {
         pageTable = new PageTable(books).getRootVBox();
 
         vBox = new VBox(menuBar, pageTable, toolBar);
+        this.ownerStage = ownerStage;
     }
 
     public VBox getVBox() {
@@ -45,19 +51,15 @@ public class MainForm {
     }
 
     private Menu createFileMenu() {
-        Menu fileMenu = new Menu(ContentText.FILE);
+        Menu fileMenu = new Menu(Constant.FILE);
 
-        MenuItem newFile = new MenuItem(ContentText.NEW);
-        MenuItem generate = new MenuItem(ContentText.GENERATE);
-        MenuItem openFile = new MenuItem(ContentText.OPEN);
-        MenuItem saveFile = new MenuItem(ContentText.SAVE);
+        MenuItem newFile = new MenuItem(Constant.NEW);
+        MenuItem generate = new MenuItem(Constant.GENERATE);
+        MenuItem openFile = new MenuItem(Constant.OPEN);
+        MenuItem saveFile = new MenuItem(Constant.SAVE);
 
         newFile.setOnAction(e -> {
-            books.clear();
-        });
-
-        saveFile.setOnAction(e -> {
-
+            controller.newFile();
         });
 
         openFile.setOnAction(e -> {
@@ -65,7 +67,17 @@ public class MainForm {
         });
 
         saveFile.setOnAction(e -> {
+            FileChooser saveFileChooser = new FileChooser();
+            saveFileChooser.setTitle(Constant.SAVE);
+            saveFileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("XML files", "*.xml"),
+                    new FileChooser.ExtensionFilter("All files", "*.*")
+            );
+            File selectedFile = saveFileChooser.showSaveDialog(ownerStage);
+            System.out.println(selectedFile.getAbsolutePath());
 
+            controller.saveFile(selectedFile.getAbsolutePath());
         });
 
         fileMenu.getItems().addAll(newFile, generate, openFile, saveFile);
@@ -74,16 +86,16 @@ public class MainForm {
     }
 
     private Menu createEditMenu() {
-        Menu editMenu = new Menu(ContentText.EDIT);
+        Menu editMenu = new Menu(Constant.EDIT);
 
-        MenuItem add = new MenuItem(ContentText.ADD);
-        Menu remove = new Menu(ContentText.REMOVE);
-        MenuItem byAuthor = new MenuItem(ContentText.AUTHOR);
-        MenuItem byPubAndAuthor = new MenuItem(ContentText.PUBLISHING_AUTHOR);
-        MenuItem byVolCount = new MenuItem(ContentText.VOLUME_COUNT);
-        MenuItem byName = new MenuItem(ContentText.NAME);
-        MenuItem byCir = new MenuItem(ContentText.CIRCULATION);
-        MenuItem byVolCountTotal = new MenuItem(ContentText.VOLUME_COUNT_TOTAL);
+        MenuItem add = new MenuItem(Constant.ADD);
+        Menu remove = new Menu(Constant.REMOVE);
+        MenuItem byAuthor = new MenuItem(Constant.AUTHOR);
+        MenuItem byPubAndAuthor = new MenuItem(Constant.PUBLISHING_AUTHOR);
+        MenuItem byVolCount = new MenuItem(Constant.VOLUME_COUNT);
+        MenuItem byName = new MenuItem(Constant.NAME);
+        MenuItem byCir = new MenuItem(Constant.CIRCULATION);
+        MenuItem byVolCountTotal = new MenuItem(Constant.VOLUME_COUNT_TOTAL);
 
         remove.getItems().addAll(byAuthor, byPubAndAuthor, byVolCount, byName, byCir, byVolCountTotal);
 
@@ -121,14 +133,14 @@ public class MainForm {
     }
 
     private Menu createSearchMenu() {
-        Menu searchMenu = new Menu(ContentText.SEARCH);
+        Menu searchMenu = new Menu(Constant.SEARCH);
 
-        MenuItem byAuthor = new MenuItem(ContentText.AUTHOR);
-        MenuItem byPubAndAuthor = new MenuItem(ContentText.PUBLISHING_AUTHOR);
-        MenuItem byVolCount = new MenuItem(ContentText.VOLUME_COUNT);
-        MenuItem byName = new MenuItem(ContentText.NAME);
-        MenuItem byCir = new MenuItem(ContentText.CIRCULATION);
-        MenuItem byVolCountTotal = new MenuItem(ContentText.VOLUME_COUNT_TOTAL);
+        MenuItem byAuthor = new MenuItem(Constant.AUTHOR);
+        MenuItem byPubAndAuthor = new MenuItem(Constant.PUBLISHING_AUTHOR);
+        MenuItem byVolCount = new MenuItem(Constant.VOLUME_COUNT);
+        MenuItem byName = new MenuItem(Constant.NAME);
+        MenuItem byCir = new MenuItem(Constant.CIRCULATION);
+        MenuItem byVolCountTotal = new MenuItem(Constant.VOLUME_COUNT_TOTAL);
 
         byAuthor.setOnAction(e -> {
             createSearchBookDialog(ParameterCondition.AUTHOR).show();
@@ -160,13 +172,13 @@ public class MainForm {
     }
 
     private Menu createRemoveMenu() {
-        Menu remove = new Menu(ContentText.REMOVE);
-        MenuItem byAuthor = new MenuItem(ContentText.AUTHOR);
-        MenuItem byPubAndAuthor = new MenuItem(ContentText.PUBLISHING_AUTHOR);
-        MenuItem byVolCount = new MenuItem(ContentText.VOLUME_COUNT);
-        MenuItem byName = new MenuItem(ContentText.NAME);
-        MenuItem byCir = new MenuItem(ContentText.CIRCULATION);
-        MenuItem byVolCountTotal = new MenuItem(ContentText.VOLUME_COUNT_TOTAL);
+        Menu remove = new Menu(Constant.REMOVE);
+        MenuItem byAuthor = new MenuItem(Constant.AUTHOR);
+        MenuItem byPubAndAuthor = new MenuItem(Constant.PUBLISHING_AUTHOR);
+        MenuItem byVolCount = new MenuItem(Constant.VOLUME_COUNT);
+        MenuItem byName = new MenuItem(Constant.NAME);
+        MenuItem byCir = new MenuItem(Constant.CIRCULATION);
+        MenuItem byVolCountTotal = new MenuItem(Constant.VOLUME_COUNT_TOTAL);
 
         remove.getItems().addAll(byAuthor, byPubAndAuthor, byVolCount, byName, byCir, byVolCountTotal);
 
@@ -200,12 +212,12 @@ public class MainForm {
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
 
-        Button newFile = new Button(ContentText.NEW);
-        Button openFile = new Button(ContentText.OPEN);
-        Button saveFile = new Button(ContentText.SAVE);
-        Button add = new Button(ContentText.ADD);
-        MenuButton search = new MenuButton(ContentText.SEARCH);
-        MenuButton remove = new MenuButton(ContentText.REMOVE);
+        Button newFile = new Button(Constant.NEW);
+        Button openFile = new Button(Constant.OPEN);
+        Button saveFile = new Button(Constant.SAVE);
+        Button add = new Button(Constant.ADD);
+        MenuButton search = new MenuButton(Constant.SEARCH);
+        MenuButton remove = new MenuButton(Constant.REMOVE);
         search.getItems().addAll(createSearchMenu().getItems());
         remove.getItems().addAll(createRemoveMenu().getItems());
 
@@ -223,9 +235,9 @@ public class MainForm {
     private Alert createAddBookDialog() {
         AddBookForm addBookForm = new AddBookForm();
 
-        Alert addBookAlert = createEmptyDialog(ContentText.ADD, addBookForm.getVBox());
+        Alert addBookAlert = createEmptyDialog(Constant.ADD, addBookForm.getVBox());
 
-        ButtonType ADD = new ButtonType(ContentText.ADD);
+        ButtonType ADD = new ButtonType(Constant.ADD);
         addBookAlert.getDialogPane().getButtonTypes().add(ADD);
         Button addButton = (Button) addBookAlert.getDialogPane().lookupButton(ADD);
         addButton.setOnAction(e -> {
@@ -252,7 +264,7 @@ public class MainForm {
                     controller.addBook(book);
                 }
             } catch (Exception ex) {
-                Alert info = createEmptyDialog(ContentText.ERROR, new Label(ContentText.INVALID_INPUT_DATA));
+                Alert info = createEmptyDialog(Constant.ERROR, new Label(Constant.INVALID_INPUT_DATA));
                 info.getButtonTypes().add(ButtonType.OK);
                 info.show();
             }
@@ -264,9 +276,9 @@ public class MainForm {
     private Alert createRemoveBookDialog(ParameterCondition condition) {
         ParameterForm removeBookForm = new ParameterForm(condition);
 
-        Alert removeBookAlert = createEmptyDialog(ContentText.REMOVE, removeBookForm.getVBox());
+        Alert removeBookAlert = createEmptyDialog(Constant.REMOVE, removeBookForm.getVBox());
 
-        ButtonType REMOVE = new ButtonType(ContentText.REMOVE);
+        ButtonType REMOVE = new ButtonType(Constant.REMOVE);
         removeBookAlert.getDialogPane().getButtonTypes().add(REMOVE);
         Button removeButton = (Button) removeBookAlert.getDialogPane().lookupButton(REMOVE);
         removeButton.setOnAction(e -> {
@@ -281,14 +293,14 @@ public class MainForm {
 
             Toggle selectedToggle = removeBookForm.getGreaterOrLessTglGrp().getSelectedToggle();
             boolean isGreaterThanBorder = (selectedToggle != null) &&
-                    selectedToggle.getUserData().equals(ContentText.GREATER);
+                    selectedToggle.getUserData().equals(Constant.GREATER);
 
             ObservableList<Book> foundBooks = new SearchStrategy(books, condition, generateValidBook(removeBookForm),
                     upLimit, downLimit, border, isGreaterThanBorder).find();
             controller.removeBook(foundBooks);
 
-            Alert info = createEmptyDialog(ContentText.REMOVED + ContentText.INFO,
-                    new Label(ContentText.REMOVED + ": " + String.valueOf(foundBooks.size())));
+            Alert info = createEmptyDialog(Constant.REMOVED + Constant.INFO,
+                    new Label(Constant.REMOVED + ": " + String.valueOf(foundBooks.size())));
             info.getButtonTypes().add(ButtonType.OK);
             info.show();
         });
@@ -301,7 +313,7 @@ public class MainForm {
 
         PageTable pageTable = new PageTable(FXCollections.observableArrayList());
 
-        Button find = new Button(ContentText.FIND);
+        Button find = new Button(Constant.FIND);
         find.setOnAction(e -> {
             String upLimitString = searchBookForm.getCountUpLimitTxt();
             String downLimitString = searchBookForm.getCountDownLimitTxt();
@@ -314,7 +326,7 @@ public class MainForm {
 
             Toggle selectedToggle = searchBookForm.getGreaterOrLessTglGrp().getSelectedToggle();
             boolean isGreaterThanBorder = (selectedToggle != null) &&
-                    selectedToggle.getUserData().equals(ContentText.GREATER);
+                    selectedToggle.getUserData().equals(Constant.GREATER);
 
             ObservableList<Book> foundBooks = new SearchStrategy(books, condition, generateValidBook(searchBookForm),
                     upLimit, downLimit, border, isGreaterThanBorder).find();
@@ -323,7 +335,7 @@ public class MainForm {
 
         searchBookForm.getVBox().getChildren().addAll(pageTable.getRootVBox(), find);
 
-        Alert findBookAlert = createEmptyDialog(ContentText.SEARCH, searchBookForm.getVBox());
+        Alert findBookAlert = createEmptyDialog(Constant.SEARCH, searchBookForm.getVBox());
         findBookAlert.getButtonTypes().add(ButtonType.CLOSE);
 
         return findBookAlert;
@@ -351,11 +363,11 @@ public class MainForm {
         int cir = Pattern.matches(regex, cirString) ? Integer.parseInt(cirString) : 0;
         int volCountTotal = Pattern.matches(regex, volCountTotalString) ? Integer.parseInt(volCountTotalString) : 0;
 
-        name = (name.equals(ContentText.EMPTY_STRING)) ? ContentText.WHITE_SPACE : name;
-        firstName = (firstName.equals(ContentText.EMPTY_STRING)) ? ContentText.WHITE_SPACE : firstName;
-        middleName = (middleName.equals(ContentText.EMPTY_STRING)) ? ContentText.WHITE_SPACE : middleName;
-        lastName = (lastName.equals(ContentText.EMPTY_STRING)) ? ContentText.WHITE_SPACE : lastName;
-        publishing = (publishing.equals(ContentText.EMPTY_STRING)) ? ContentText.WHITE_SPACE : publishing;
+        name = (name.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : name;
+        firstName = (firstName.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : firstName;
+        middleName = (middleName.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : middleName;
+        lastName = (lastName.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : lastName;
+        publishing = (publishing.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : publishing;
 
         Book validBook = new Book(name, firstName, middleName, lastName, publishing, 0, cir);
         validBook.setVolumeCountTotal(volCountTotal);

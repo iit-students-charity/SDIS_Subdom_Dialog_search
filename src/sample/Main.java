@@ -19,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         ObservableList<Book> books = FXCollections.observableArrayList();
         Controller controller = new Controller(books);
-        MainForm mainForm = new MainForm(controller, books);
+        MainForm mainForm = new MainForm(controller, books, primaryStage);
 
         primaryStage.setWidth(FORM_WIDTH);
         primaryStage.setHeight(FORM_HEIGHT);

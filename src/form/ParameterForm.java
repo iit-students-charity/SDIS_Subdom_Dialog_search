@@ -42,10 +42,10 @@ public class ParameterForm {
         countDownLimit = new TextField();
         countBorder = new TextField();
 
-        less = new RadioButton(ContentText.LESS);
-        greater = new RadioButton(ContentText.GREATER);
-        less.setUserData(ContentText.LESS);
-        greater.setUserData(ContentText.GREATER);
+        less = new RadioButton(Constant.LESS);
+        greater = new RadioButton(Constant.GREATER);
+        less.setUserData(Constant.LESS);
+        greater.setUserData(Constant.GREATER);
         greaterOrLessTglGrp = new ToggleGroup();
         greaterOrLessTglGrp.getToggles().addAll(less, greater);
         greaterOrLessTglGrp.selectToggle(less);
@@ -82,9 +82,9 @@ public class ParameterForm {
     }
 
     private VBox createAuthorVBox() {
-        Label firstNameLabel = new Label(ContentText.FIRST_NAME);
-        Label middleNameLabel = new Label(ContentText.MIDDLE_NAME);
-        Label lastNameLabel = new Label(ContentText.LAST_NAME);
+        Label firstNameLabel = new Label(Constant.FIRST_NAME);
+        Label middleNameLabel = new Label(Constant.MIDDLE_NAME);
+        Label lastNameLabel = new Label(Constant.LAST_NAME);
 
         return new VBox(
                 new TwoNodesGrid(firstNameLabel, firstNameTxtField).getGridPane(),
@@ -95,7 +95,7 @@ public class ParameterForm {
 
     private VBox createPubAuthorVBox() {
         VBox vBox = createAuthorVBox();
-        Label pubLabel = new Label(ContentText.PUBLISHING);
+        Label pubLabel = new Label(Constant.PUBLISHING);
 
         vBox.getChildren().add(new TwoNodesGrid(pubLabel, pubTxtField).getGridPane());
 
@@ -103,8 +103,8 @@ public class ParameterForm {
     }
 
     private VBox createVolCountVBox() {
-        Label upLimit = new Label(ContentText.UP_LIMIT);
-        Label downLimit = new Label(ContentText.DOWN_LIMIT);
+        Label upLimit = new Label(Constant.UP_LIMIT);
+        Label downLimit = new Label(Constant.DOWN_LIMIT);
 
         return new VBox(
                 new TwoNodesGrid(downLimit, countDownLimit).getGridPane(),
@@ -113,13 +113,13 @@ public class ParameterForm {
     }
 
     private VBox createNameVBox() {
-        Label nameLabel = new Label(ContentText.NAME);
+        Label nameLabel = new Label(Constant.NAME);
 
         return new VBox(new TwoNodesGrid(nameLabel, nameTxtField).getGridPane());
     }
 
     private VBox createCirculationVBox() {
-        Label cirLabel = new Label(ContentText.BORDER);
+        Label cirLabel = new Label(Constant.BORDER);
 
         return new VBox(
                 new TwoNodesGrid(cirLabel, cirTxtField).getGridPane(),
@@ -128,7 +128,7 @@ public class ParameterForm {
     }
 
     private VBox createVolCountTotalVBox() {
-        Label volCountTotalLabel = new Label(ContentText.BORDER);
+        Label volCountTotalLabel = new Label(Constant.BORDER);
 
         return new VBox(
                 new TwoNodesGrid(volCountTotalLabel, volCountTotalTxtField).getGridPane(),

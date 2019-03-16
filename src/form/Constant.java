@@ -1,6 +1,6 @@
 package form;
 
-public class ContentText {
+public class Constant {
     public static final String NAME = "Name";
     public static final String AUTHOR = "Author";
     public static final String FIRST_NAME = "First name";

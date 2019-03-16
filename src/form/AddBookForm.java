@@ -40,13 +40,13 @@ public class AddBookForm {
         volCountTxtField = new TextField();
         cirTxtField = new TextField();
 
-        nameLabel = new Label(ContentText.NAME);
-        firstNameLabel = new Label(ContentText.FIRST_NAME);
-        middleNameLabel = new Label(ContentText.MIDDLE_NAME);
-        lastNameLabel = new Label(ContentText.LAST_NAME);
-        pubLabel = new Label(ContentText.PUBLISHING);
-        volCountLabel = new Label(ContentText.VOLUME_COUNT);
-        cirLabel = new Label(ContentText.CIRCULATION);
+        nameLabel = new Label(Constant.NAME);
+        firstNameLabel = new Label(Constant.FIRST_NAME);
+        middleNameLabel = new Label(Constant.MIDDLE_NAME);
+        lastNameLabel = new Label(Constant.LAST_NAME);
+        pubLabel = new Label(Constant.PUBLISHING);
+        volCountLabel = new Label(Constant.VOLUME_COUNT);
+        cirLabel = new Label(Constant.CIRCULATION);
     }
 
     private VBox createVBox() {
