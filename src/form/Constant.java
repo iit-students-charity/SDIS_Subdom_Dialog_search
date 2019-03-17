@@ -32,6 +32,8 @@ public class Constant {
     public static final String PREV_PAGE = "<";
     public static final String FIRST_PAGE = "<<";
     public static final String LAST_PAGE = ">>";
+    public static final String COUNT_OF_BOOKS_ON_PAGE = "Count of books on page";
+    public static final String BOOKS = "Books";
     public static final String UP_LIMIT = "Up limit";
     public static final String DOWN_LIMIT = "Down limit";
     public static final String BORDER = "Border";

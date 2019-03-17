@@ -20,7 +20,8 @@ import java.util.regex.Pattern;
 public class MainForm {
     private MenuBar menuBar;
     private ToolBar toolBar;
-    private VBox pageTable;
+    private VBox pageTableVBox;
+    private PageTable pageTable;
 
     private VBox vBox;
     private Stage ownerStage;
@@ -35,9 +36,10 @@ public class MainForm {
 
         menuBar = createMenuBar();
         toolBar = createToolBar();
-        pageTable = new PageTable(books).getRootVBox();
+        pageTable = new PageTable(books);
+        pageTableVBox = pageTable.getRootVBox();
 
-        vBox = new VBox(menuBar, pageTable, toolBar);
+        vBox = new VBox(menuBar, pageTableVBox, toolBar);
         this.ownerStage = ownerStage;
     }
 
@@ -64,10 +66,12 @@ public class MainForm {
 
         newFile.setOnAction(e -> {
             controller.newFile();
+            pageTable.updateCurrentPage(PageTable.controlType.FIRST);
         });
 
         generate.setOnAction(e -> {
             controller.generateFile();
+            pageTable.updateCountOfBooks();
         });
 
         openFile.setOnAction(openFileEventHandler());
@@ -188,6 +192,7 @@ public class MainForm {
 
         generateFile.setOnAction(e -> {
             controller.generateFile();
+            pageTable.updateCountOfBooks();
         });
 
         openFile.setOnAction(openFileEventHandler());
@@ -246,6 +251,8 @@ public class MainForm {
                 info.getButtonTypes().add(ButtonType.OK);
                 info.show();
             }
+
+            pageTable.updateCountOfBooks();
         });
 
         return addBookAlert;
@@ -281,6 +288,8 @@ public class MainForm {
                     new Label(Constant.REMOVED + ": " + String.valueOf(foundBooks.size())));
             info.getButtonTypes().add(ButtonType.OK);
             info.show();
+
+            pageTable.updateCountOfBooks();
         });
 
         return removeBookAlert;
@@ -344,6 +353,7 @@ public class MainForm {
             if (selectedFile != null) {
                 controller.openFile(selectedFile.getAbsolutePath());
             }
+            pageTable.updateCountOfBooks();
         };
     }
 
@@ -359,6 +369,7 @@ public class MainForm {
             if (selectedFile != null) {
                 controller.saveFile(selectedFile.getAbsolutePath());
             }
+            pageTable.updateCountOfBooks();
         };
     }
 
