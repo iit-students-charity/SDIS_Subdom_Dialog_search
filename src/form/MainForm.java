@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import controller.SearchStrategy;
 import datamodel.Book;
@@ -185,6 +187,14 @@ public class MainForm {
         Button add = new Button(Constant.ADD);
         MenuButton search = new MenuButton(Constant.SEARCH);
         MenuButton remove = new MenuButton(Constant.REMOVE);
+
+        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../add.png"))));
+        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../search.png"))));
+        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../remove.png"))));
+        newFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../newFile.png"))));
+        generateFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../generateFile.png"))));
+        openFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../openFile.png"))));
+        saveFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../saveFile.png"))));
 
         newFile.setOnAction(e -> {
             controller.newFile();

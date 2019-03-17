@@ -10,6 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -77,6 +79,7 @@ public class PageTable {
         volCountTotalCol.setSortable(false);
 
         bookTable.getColumns().addAll(nameCol, authorCol, pubCol, volCountCol, cirCol, volCountTotalCol);
+        bookTable.setPrefWidth(650);
 
         return bookTable;
     }
@@ -90,6 +93,7 @@ public class PageTable {
         pagesCounterLabel = new Label("1/1");
         Button firstPage = new Button(Constant.FIRST_PAGE);
         Button lastPage = new Button(Constant.LAST_PAGE);
+
 
         nextPage.setOnAction(e -> {
             updateCurrentPage(controlType.NEXT);
@@ -116,10 +120,10 @@ public class PageTable {
 
 
         return createHBox(
-                30,
+                20,
                 createHBox(5, new Label(Constant.BOOKS), booksCounterLabel),
                 new Separator(Orientation.VERTICAL),
-                createHBox(5, new Label(Constant.COUNT_OF_BOOKS_ON_PAGE), countOfBooksOnPageTextField),
+                createHBox(10, new Label(Constant.BOOKS_ON_PAGE), countOfBooksOnPageTextField),
                 new Separator(Orientation.VERTICAL),
                 createHBox(5, firstPage, prevPage, pagesCounterLabel, nextPage, lastPage)
         );

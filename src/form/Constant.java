@@ -32,7 +32,7 @@ public class Constant {
     public static final String PREV_PAGE = "<";
     public static final String FIRST_PAGE = "<<";
     public static final String LAST_PAGE = ">>";
-    public static final String COUNT_OF_BOOKS_ON_PAGE = "Count of books on page";
+    public static final String BOOKS_ON_PAGE = "Books on page";
     public static final String BOOKS = "Books";
     public static final String UP_LIMIT = "Up limit";
     public static final String DOWN_LIMIT = "Down limit";
@@ -47,13 +47,10 @@ public class Constant {
     public static final String AUTHOR_FIELD = "author";
 
     public static final String LAST_NAME_XML_NAME = "last_name";
-    public static final String LAST_NAME_FIELD = "lastName";
 
     public static final String FIRST_NAME_XML_NAME = "first_name";
-    public static final String FIRST_NAME_FIELD = "firstName";
 
     public static final String MIDDLE_NAME_XML_NAME = "middle_name";
-    public static final String MIDDLE_NAME_FIELD = "middleName";
 
     public static final String PUBLISHING_FIELD = "publishing";
 
