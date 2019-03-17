@@ -2,7 +2,7 @@ package form;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -76,9 +76,23 @@ public class MainForm {
             pageTable.updateCountOfBooks();
         });
 
-        openFile.setOnAction(openFileEventHandler());
+        openFile.setOnAction(e -> {
+            File selectedFile = createOpenFileDialog();
 
-        saveFile.setOnAction(saveFileEventHandler());
+            if (selectedFile != null) {
+                controller.openFile(selectedFile.getAbsolutePath());
+                pageTable.updateCountOfBooks();
+            }
+        });
+
+        saveFile.setOnAction(e -> {
+            File selectedFile = createSaveFileDialog();
+
+            if (selectedFile != null) {
+                controller.saveFile(selectedFile.getAbsolutePath());
+                pageTable.updateCountOfBooks();
+            }
+        });
 
         fileMenu.getItems().addAll(newFile, generate, openFile, saveFile);
 
@@ -180,35 +194,53 @@ public class MainForm {
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
 
-        Button newFile = new Button(Constant.NEW);
-        Button openFile = new Button(Constant.OPEN);
-        Button generateFile = new Button(Constant.GENERATE);
-        Button saveFile = new Button(Constant.SAVE);
-        Button add = new Button(Constant.ADD);
-        MenuButton search = new MenuButton(Constant.SEARCH);
-        MenuButton remove = new MenuButton(Constant.REMOVE);
+        Button newFile = new Button();
+        Button openFile = new Button();
+        Button generateFile = new Button();
+        Button saveFile = new Button();
+        Button add = new Button();
+        MenuButton search = new MenuButton();
+        MenuButton remove = new MenuButton();
 
-        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../add.png"))));
-        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../search.png"))));
-        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../remove.png"))));
-        newFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../newFile.png"))));
-        generateFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../generateFile.png"))));
-        openFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../openFile.png"))));
-        saveFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../saveFile.png"))));
+        newFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.NEW_FILE))));
+        openFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.OPEN_FILE))));
+        generateFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.GENERATE_FILE))));
+        saveFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.SAVE_FILE))));
+        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.ADD))));
+        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.SEARCH))));
+        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.REMOVE))));
 
-        newFile.setOnAction(e -> {
+        newFile.setOnMouseClicked(e -> {
             controller.newFile();
             pageTable.updateCountOfBooks();
         });
 
-        generateFile.setOnAction(e -> {
+        generateFile.setOnMouseClicked(e -> {
             controller.generateFile();
             pageTable.updateCountOfBooks();
         });
 
-        openFile.setOnAction(openFileEventHandler());
+        openFile.setOnMouseClicked(e -> {
+            File selectedFile = createOpenFileDialog();
 
-        saveFile.setOnAction(saveFileEventHandler());
+            if (selectedFile != null) {
+                controller.openFile(selectedFile.getAbsolutePath());
+                pageTable.updateCountOfBooks();
+            }
+        });
+
+        saveFile.setOnMouseClicked(e -> {
+            File selectedFile = createSaveFileDialog();
+
+            if (selectedFile != null) {
+                controller.saveFile(selectedFile.getAbsolutePath());
+                pageTable.updateCountOfBooks();
+            }
+        });
+
+        add.setOnMouseClicked(e -> {
+            createAddBookDialog().show();
+        });
 
         search.getItems().addAll(createSearchMenu().getItems());
         remove.getItems().addAll(createRemoveMenu().getItems());
@@ -216,10 +248,6 @@ public class MainForm {
         toolBar.getItems().addAll(newFile, generateFile, openFile, saveFile);
         toolBar.getItems().add(new Separator());
         toolBar.getItems().addAll(search, add, remove);
-
-        add.setOnAction(e -> {
-            createAddBookDialog().show();
-        });
 
         return toolBar;
     }
@@ -234,7 +262,7 @@ public class MainForm {
         ButtonType ADD = new ButtonType(Constant.ADD);
         addBookAlert.getDialogPane().getButtonTypes().add(ADD);
         Button addButton = (Button) addBookAlert.getDialogPane().lookupButton(ADD);
-        addButton.setOnAction(e -> {
+        addButton.setOnMouseClicked(e -> {
             int tempVolumeCount;
             int tempCirculation;
 
@@ -277,7 +305,7 @@ public class MainForm {
         ButtonType REMOVE = new ButtonType(Constant.REMOVE);
         removeBookAlert.getDialogPane().getButtonTypes().add(REMOVE);
         Button removeButton = (Button) removeBookAlert.getDialogPane().lookupButton(REMOVE);
-        removeButton.setOnAction(e -> {
+        removeButton.setOnMouseClicked(e -> {
             String upLimitString = removeBookForm.getCountUpLimitTxt();
             String downLimitString = removeBookForm.getCountDownLimitTxt();
             String borderString = removeBookForm.getCountBorderTxt();
@@ -313,7 +341,7 @@ public class MainForm {
         PageTable foundBooksPageTable = new PageTable(foundBooks);
 
         Button find = new Button(Constant.FIND);
-        find.setOnAction(e -> {
+        find.setOnMouseClicked(e -> {
             String upLimitString = searchBookForm.getCountUpLimitTxt();
             String downLimitString = searchBookForm.getCountDownLimitTxt();
             String borderString = searchBookForm.getCountBorderTxt();
@@ -351,40 +379,26 @@ public class MainForm {
         return alert;
     }
 
+    private File createOpenFileDialog() {
+        FileChooser openFileChooser = new FileChooser();
+        openFileChooser.setTitle(Constant.OPEN);
+        openFileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("XML files", "*.xml"),
+                new FileChooser.ExtensionFilter("All files", "*.*")
+        );
 
-    // File event handlers
-    private EventHandler<ActionEvent> openFileEventHandler() {
-        return event -> {
-            FileChooser openFileChooser = new FileChooser();
-            openFileChooser.setTitle(Constant.OPEN);
-            openFileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                    new FileChooser.ExtensionFilter("XML files", "*.xml"),
-                    new FileChooser.ExtensionFilter("All files", "*.*")
-            );
-            File selectedFile = openFileChooser.showOpenDialog(ownerStage);
-
-            if (selectedFile != null) {
-                controller.openFile(selectedFile.getAbsolutePath());
-            }
-            pageTable.updateCountOfBooks();
-        };
+        return openFileChooser.showOpenDialog(ownerStage);
     }
 
-    private EventHandler<ActionEvent> saveFileEventHandler() {
-        return event -> {
-            FileChooser saveFileChooser = new FileChooser();
-            saveFileChooser.setTitle(Constant.SAVE);
-            File selectedFile = saveFileChooser.showSaveDialog(ownerStage);
-            saveFileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter("All files", "*.*")
-            );
+    private File createSaveFileDialog() {
+        FileChooser saveFileChooser = new FileChooser();
+        saveFileChooser.setTitle(Constant.SAVE);
+        saveFileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("All files", "*.*")
+        );
 
-            if (selectedFile != null) {
-                controller.saveFile(selectedFile.getAbsolutePath());
-            }
-            pageTable.updateCountOfBooks();
-        };
+        return saveFileChooser.showSaveDialog(ownerStage);
     }
 
 

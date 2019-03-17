@@ -10,10 +10,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import datamodel.Book;
@@ -26,7 +26,7 @@ public class PageTable {
     private TextField countOfBooksOnPageTextField;
     private Label booksCounterLabel;
     private Label pagesCounterLabel;
-    private HBox paginationBox;
+    private ToolBar paginationBar;
 
     private VBox rootVBox;
 
@@ -42,10 +42,9 @@ public class PageTable {
         this.books = books;
         currentBooks = FXCollections.observableArrayList();
         bookTable = createBookTable();
-        paginationBox = createPaginationBox();
+        paginationBar = createPaginationBar();
 
-        rootVBox = new VBox(bookTable, paginationBox);
-        rootVBox.setSpacing(10);
+        rootVBox = new VBox(bookTable, paginationBar);
 
         countOfBooksOnPageRepresent = 10;
         currentPage = 1;
@@ -84,9 +83,10 @@ public class PageTable {
         return bookTable;
     }
 
-    private HBox createPaginationBox() {
+    private ToolBar createPaginationBar() {
         booksCounterLabel = new Label(String.valueOf(countOfBooksOnPageRepresent) + '/' + String.valueOf(books.size()));
         countOfBooksOnPageTextField = new TextField();
+        countOfBooksOnPageTextField.setPrefWidth(50);
 
         Button nextPage = new Button(Constant.NEXT_PAGE);
         Button prevPage = new Button(Constant.PREV_PAGE);
@@ -118,15 +118,16 @@ public class PageTable {
             }
         });
 
-
-        return createHBox(
-                20,
-                createHBox(5, new Label(Constant.BOOKS), booksCounterLabel),
-                new Separator(Orientation.VERTICAL),
+        ToolBar toolBar = new ToolBar(
                 createHBox(10, new Label(Constant.BOOKS_ON_PAGE), countOfBooksOnPageTextField),
-                new Separator(Orientation.VERTICAL),
-                createHBox(5, firstPage, prevPage, pagesCounterLabel, nextPage, lastPage)
+                new Separator(),
+                createHBox(5, firstPage, prevPage, pagesCounterLabel, nextPage, lastPage),
+                new Separator(),
+                createHBox(5, new Label(Constant.BOOKS), booksCounterLabel)
         );
+
+
+        return toolBar;
     }
 
     private HBox createHBox(int spacing, Node... nodes) {
