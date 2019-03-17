@@ -14,6 +14,11 @@ public class Controller {
         books.clear();
     }
 
+    public void generateFile() {
+        books.clear();
+        books.addAll(new BookGenerator().generate());
+    }
+
     public void openFile(String filePath) {
         new SAXReader(books, filePath).read();
     }

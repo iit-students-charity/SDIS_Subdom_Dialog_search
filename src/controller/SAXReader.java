@@ -38,22 +38,11 @@ public class SAXReader {
             parser.parse(new File(filePath), new SAXReaderHandler());
         } catch (SAXException | IOException ex) {
             ex.printStackTrace();
-            return;
         }
-
-        //return books;
     }
 
 
     private class SAXReaderHandler extends DefaultHandler {
-        private static final String NAME = "name";
-        private static final String LAST_NAME = "last_mame";
-        private static final String FIRST_NAME = "first_name";
-        private static final String MIDDLE_NAME = "middle_name";
-        private static final String PUBLISHING = "publishing";
-        private static final String VOLUME_COUNT = "volume_count";
-        private static final String CIRCULATION = "circulation";
-
         private String name;
         private String firstName;
         private String middleName;
@@ -71,10 +60,12 @@ public class SAXReader {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            if (name == null || name.isEmpty() || lastName == null || lastName.isEmpty() ||
-                    firstName == null || firstName.isEmpty() || middleName == null || middleName.isEmpty() ||
-                    volumeCount == null || volumeCount.isEmpty() || circulation == null || circulation.isEmpty()) {
-                return;
+            String[] param = { name, lastName, firstName, middleName, publishing, volumeCount, circulation };
+
+            for (String parameter : param) {
+                if (parameter == null || parameter.isEmpty()) {
+                    return;
+                }
             }
 
 
@@ -107,31 +98,31 @@ public class SAXReader {
             nodeText = nodeText.replace("\n", Constant.EMPTY_STRING).trim();
 
             if (!nodeText.isEmpty()) {
-                if (lastElementName.equals(NAME)) {
+                if (lastElementName.equals(Constant.NAME_FIELD)) {
                     name = nodeText;
                 }
 
-                if (lastElementName.equals(LAST_NAME)) {
+                if (lastElementName.equals(Constant.LAST_NAME_XML_NAME)) {
                     lastName = nodeText;
                 }
 
-                if (lastElementName.equals(FIRST_NAME)) {
+                if (lastElementName.equals(Constant.FIRST_NAME_XML_NAME)) {
                     firstName = nodeText;
                 }
 
-                if (lastElementName.equals(MIDDLE_NAME)) {
+                if (lastElementName.equals(Constant.MIDDLE_NAME_XML_NAME)) {
                     middleName = nodeText;
                 }
 
-                if (lastElementName.equals(PUBLISHING)) {
+                if (lastElementName.equals(Constant.PUBLISHING_FIELD)) {
                     publishing = nodeText;
                 }
 
-                if (lastElementName.equals(VOLUME_COUNT)) {
+                if (lastElementName.equals(Constant.VOLUME_COUNT_XML_NAME)) {
                     volumeCount = nodeText;
                 }
 
-                if (lastElementName.equals(CIRCULATION)) {
+                if (lastElementName.equals(Constant.CIRCULATION_FIELD)) {
                     circulation = nodeText;
                 }
             }

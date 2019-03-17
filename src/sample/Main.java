@@ -11,8 +11,8 @@ import form.MainForm;
 
 public class Main extends Application {
     private final String FORM_TITLE = "Subject domain with Dialog search";
-    private final int FORM_WIDTH = 1000;
-    private final int FORM_HEIGHT = 500;
+    private final int FORM_WIDTH = 800;
+    private final int FORM_HEIGHT = 400;
 
 
     @Override

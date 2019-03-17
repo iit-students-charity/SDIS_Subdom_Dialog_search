@@ -42,12 +42,12 @@ public class PageTable {
         TableColumn<Book, Integer> cirCol = new TableColumn<>(Constant.CIRCULATION);
         TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>(Constant.VOLUME_COUNT_TOTAL);
 
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
-        pubCol.setCellValueFactory(new PropertyValueFactory<>("publishing"));
-        volCountCol.setCellValueFactory(new PropertyValueFactory<>("volumeCount"));
-        cirCol.setCellValueFactory(new PropertyValueFactory<>("circulation"));
-        volCountTotalCol.setCellValueFactory(new PropertyValueFactory<>("volumeCountTotal"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>(Constant.NAME_FIELD));
+        authorCol.setCellValueFactory(new PropertyValueFactory<>(Constant.AUTHOR_FIELD));
+        pubCol.setCellValueFactory(new PropertyValueFactory<>(Constant.PUBLISHING_FIELD));
+        volCountCol.setCellValueFactory(new PropertyValueFactory<>(Constant.VOLUME_COUNT_FIELD));
+        cirCol.setCellValueFactory(new PropertyValueFactory<>(Constant.CIRCULATION_FIELD));
+        volCountTotalCol.setCellValueFactory(new PropertyValueFactory<>(Constant.VOLUME_COUNT_TOTAL_FIELD));
 
         nameCol.setSortable(false);
         authorCol.setSortable(false);

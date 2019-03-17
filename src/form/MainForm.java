@@ -2,6 +2,8 @@ package form;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -50,6 +52,8 @@ public class MainForm {
         return menuBar;
     }
 
+
+    // Menu creating
     private Menu createFileMenu() {
         Menu fileMenu = new Menu(Constant.FILE);
 
@@ -62,33 +66,13 @@ public class MainForm {
             controller.newFile();
         });
 
-        openFile.setOnAction(e -> {
-            FileChooser openFileChooser = new FileChooser();
-            openFileChooser.setTitle(Constant.OPEN);
-            openFileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                    new FileChooser.ExtensionFilter("XML files", "*.xml"),
-                    new FileChooser.ExtensionFilter("All files", "*.*")
-            );
-            File selectedFile = openFileChooser.showOpenDialog(ownerStage);
-
-            if (selectedFile != null) {
-                controller.openFile(selectedFile.getAbsolutePath());
-            }
+        generate.setOnAction(e -> {
+            controller.generateFile();
         });
 
-        saveFile.setOnAction(e -> {
-            FileChooser saveFileChooser = new FileChooser();
-            saveFileChooser.setTitle(Constant.SAVE);
-            File selectedFile = saveFileChooser.showSaveDialog(ownerStage);
-            saveFileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter("All files", "*.*")
-            );
+        openFile.setOnAction(openFileEventHandler());
 
-            if (selectedFile != null) {
-                controller.saveFile(selectedFile.getAbsolutePath());
-            }
-        });
+        saveFile.setOnAction(saveFileEventHandler());
 
         fileMenu.getItems().addAll(newFile, generate, openFile, saveFile);
 
@@ -99,6 +83,18 @@ public class MainForm {
         Menu editMenu = new Menu(Constant.EDIT);
 
         MenuItem add = new MenuItem(Constant.ADD);
+        Menu remove = createRemoveMenu();
+
+        add.setOnAction(e -> {
+            createAddBookDialog().show();
+        });
+
+        editMenu.getItems().addAll(add, remove);
+
+        return editMenu;
+    }
+
+    private Menu createRemoveMenu() {
         Menu remove = new Menu(Constant.REMOVE);
         MenuItem byAuthor = new MenuItem(Constant.AUTHOR);
         MenuItem byPubAndAuthor = new MenuItem(Constant.PUBLISHING_AUTHOR);
@@ -133,13 +129,7 @@ public class MainForm {
             createRemoveBookDialog(ParameterCondition.VOLUME_COUNT_TOTAL).show();
         });
 
-        add.setOnAction(e -> {
-            createAddBookDialog().show();
-        });
-
-        editMenu.getItems().addAll(add, remove);
-
-        return editMenu;
+        return remove;
     }
 
     private Menu createSearchMenu() {
@@ -181,57 +171,33 @@ public class MainForm {
         return searchMenu;
     }
 
-    private Menu createRemoveMenu() {
-        Menu remove = new Menu(Constant.REMOVE);
-        MenuItem byAuthor = new MenuItem(Constant.AUTHOR);
-        MenuItem byPubAndAuthor = new MenuItem(Constant.PUBLISHING_AUTHOR);
-        MenuItem byVolCount = new MenuItem(Constant.VOLUME_COUNT);
-        MenuItem byName = new MenuItem(Constant.NAME);
-        MenuItem byCir = new MenuItem(Constant.CIRCULATION);
-        MenuItem byVolCountTotal = new MenuItem(Constant.VOLUME_COUNT_TOTAL);
-
-        remove.getItems().addAll(byAuthor, byPubAndAuthor, byVolCount, byName, byCir, byVolCountTotal);
-
-        byAuthor.setOnAction(e -> {
-            createRemoveBookDialog(ParameterCondition.AUTHOR).show();
-        });
-
-        byPubAndAuthor.setOnAction(e -> {
-            createRemoveBookDialog(ParameterCondition.PUBLISHING_AUTHOR).show();
-        });
-
-        byVolCount.setOnAction(e -> {
-            createRemoveBookDialog(ParameterCondition.VOLUME_COUNT).show();
-        });
-
-        byName.setOnAction(e -> {
-            createRemoveBookDialog(ParameterCondition.NAME).show();
-        });
-
-        byCir.setOnAction(e -> {
-            createRemoveBookDialog(ParameterCondition.CIRCULATION).show();
-        });
-
-        byVolCountTotal.setOnAction(e -> {
-            createRemoveBookDialog(ParameterCondition.VOLUME_COUNT_TOTAL).show();
-        });
-
-        return remove;
-    }
-
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
 
         Button newFile = new Button(Constant.NEW);
         Button openFile = new Button(Constant.OPEN);
+        Button generateFile = new Button(Constant.GENERATE);
         Button saveFile = new Button(Constant.SAVE);
         Button add = new Button(Constant.ADD);
         MenuButton search = new MenuButton(Constant.SEARCH);
         MenuButton remove = new MenuButton(Constant.REMOVE);
+
+        newFile.setOnAction(e -> {
+            controller.newFile();
+        });
+
+        generateFile.setOnAction(e -> {
+            controller.generateFile();
+        });
+
+        openFile.setOnAction(openFileEventHandler());
+
+        saveFile.setOnAction(saveFileEventHandler());
+
         search.getItems().addAll(createSearchMenu().getItems());
         remove.getItems().addAll(createRemoveMenu().getItems());
 
-        toolBar.getItems().addAll(newFile, openFile, saveFile);
+        toolBar.getItems().addAll(newFile, generateFile, openFile, saveFile);
         toolBar.getItems().add(new Separator());
         toolBar.getItems().addAll(search, add, remove);
 
@@ -242,6 +208,8 @@ public class MainForm {
         return toolBar;
     }
 
+
+    // Dialog creating
     private Alert createAddBookDialog() {
         AddBookForm addBookForm = new AddBookForm();
 
@@ -359,6 +327,41 @@ public class MainForm {
 
         return alert;
     }
+
+
+    // File event handlers
+    private EventHandler<ActionEvent> openFileEventHandler() {
+        return event -> {
+            FileChooser openFileChooser = new FileChooser();
+            openFileChooser.setTitle(Constant.OPEN);
+            openFileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("XML files", "*.xml"),
+                    new FileChooser.ExtensionFilter("All files", "*.*")
+            );
+            File selectedFile = openFileChooser.showOpenDialog(ownerStage);
+
+            if (selectedFile != null) {
+                controller.openFile(selectedFile.getAbsolutePath());
+            }
+        };
+    }
+
+    private EventHandler<ActionEvent> saveFileEventHandler() {
+        return event -> {
+            FileChooser saveFileChooser = new FileChooser();
+            saveFileChooser.setTitle(Constant.SAVE);
+            File selectedFile = saveFileChooser.showSaveDialog(ownerStage);
+            saveFileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("All files", "*.*")
+            );
+
+            if (selectedFile != null) {
+                controller.saveFile(selectedFile.getAbsolutePath());
+            }
+        };
+    }
+
 
     private Book generateValidBook(ParameterForm form) {
         String name = form.getNameTxt();

@@ -65,6 +65,7 @@ public class AddBookForm {
         return vBox;
     }
 
+    // Get TextField text
     public String getNameTxt() {
         return nameTxtField.getText();
     }

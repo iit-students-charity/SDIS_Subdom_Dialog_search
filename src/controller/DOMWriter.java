@@ -1,6 +1,7 @@
 package controller;
 
 import datamodel.Book;
+import form.Constant;
 import javafx.collections.ObservableList;
 
 import org.w3c.dom.Document;
@@ -18,18 +19,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
 public class DOMWriter {
-    private static final String ROOT = "library";
-    private static final String BOOK = "book";
-    private static final String NAME = "name";
-    private static final String AUTHOR = "author";
-    private static final String LAST_NAME = "last_mame";
-    private static final String FIRST_NAME = "first_name";
-    private static final String MIDDLE_NAME = "middle_name";
-    private static final String PUBLISHING = "publishing";
-    private static final String VOLUME_COUNT = "volume_count";
-    private static final String CIRCULATION = "circulation";
-    private static final String VOLUME_COUNT_TOTAL = "volume_count_total";
-
     private String filePath;
     private ObservableList<Book> books;
 
@@ -51,21 +40,21 @@ public class DOMWriter {
         }
         Document document = documentBuilder.newDocument();
 
-        Element root = document.createElement(ROOT);
+        Element root = document.createElement(Constant.ROOT_XML_NAME);
         document.appendChild(root);
 
         for (Book book : books) {
-            Element name = document.createElement(NAME);
+            Element name = document.createElement(Constant.NAME_FIELD);
 
-            Element lastName = document.createElement(LAST_NAME);
-            Element firstName = document.createElement(FIRST_NAME);
-            Element middleName = document.createElement(MIDDLE_NAME);
-            Element author = document.createElement(AUTHOR);
+            Element lastName = document.createElement(Constant.LAST_NAME_XML_NAME);
+            Element firstName = document.createElement(Constant.FIRST_NAME_XML_NAME);
+            Element middleName = document.createElement(Constant.MIDDLE_NAME_XML_NAME);
+            Element author = document.createElement(Constant.AUTHOR_FIELD);
 
-            Element publishing = document.createElement(PUBLISHING);
-            Element volCount = document.createElement(VOLUME_COUNT);
-            Element cir = document.createElement(CIRCULATION);
-            Element volCountTotal = document.createElement(VOLUME_COUNT_TOTAL);
+            Element publishing = document.createElement(Constant.PUBLISHING_FIELD);
+            Element volCount = document.createElement(Constant.VOLUME_COUNT_XML_NAME);
+            Element cir = document.createElement(Constant.CIRCULATION_FIELD);
+            Element volCountTotal = document.createElement(Constant.VOLUME_COUNT_TOTAL_XML_NAME);
 
 
             name.appendChild(document.createTextNode(book.getName()));
@@ -83,7 +72,7 @@ public class DOMWriter {
             volCountTotal.appendChild(document.createTextNode(String.valueOf(book.getVolumeCountTotal())));
 
 
-            Element bookNode = document.createElement(BOOK);
+            Element bookNode = document.createElement(Constant.BOOK_XML_NAME);
             bookNode.appendChild(name);
             bookNode.appendChild(author);
             bookNode.appendChild(publishing);
