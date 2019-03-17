@@ -188,6 +188,7 @@ public class MainForm {
 
         newFile.setOnAction(e -> {
             controller.newFile();
+            pageTable.updateCountOfBooks();
         });
 
         generateFile.setOnAction(e -> {
@@ -298,13 +299,15 @@ public class MainForm {
     private Alert createSearchBookDialog(ParameterCondition condition) {
         ParameterForm searchBookForm = new ParameterForm(condition);
 
-        PageTable pageTable = new PageTable(FXCollections.observableArrayList());
+        ObservableList<Book> foundBooks = FXCollections.observableArrayList();
+        PageTable foundBooksPageTable = new PageTable(foundBooks);
 
         Button find = new Button(Constant.FIND);
         find.setOnAction(e -> {
             String upLimitString = searchBookForm.getCountUpLimitTxt();
             String downLimitString = searchBookForm.getCountDownLimitTxt();
             String borderString = searchBookForm.getCountBorderTxt();
+            System.out.println(borderString);
 
             String regex = "^\\d+$";
             int upLimit = Pattern.matches(regex, upLimitString) ? Integer.parseInt(upLimitString) : 0;
@@ -315,12 +318,13 @@ public class MainForm {
             boolean isGreaterThanBorder = (selectedToggle != null) &&
                     selectedToggle.getUserData().equals(Constant.GREATER);
 
-            ObservableList<Book> foundBooks = new SearchStrategy(books, condition, generateValidBook(searchBookForm),
-                    upLimit, downLimit, border, isGreaterThanBorder).find();
-            pageTable.getBookTable().setItems(foundBooks);
+            foundBooks.clear();
+            foundBooks.addAll(new SearchStrategy(books, condition, generateValidBook(searchBookForm),
+                    upLimit, downLimit, border, isGreaterThanBorder).find());
+            foundBooksPageTable.updateCountOfBooks();
         });
 
-        searchBookForm.getVBox().getChildren().addAll(pageTable.getRootVBox(), find);
+        searchBookForm.getVBox().getChildren().addAll(foundBooksPageTable.getRootVBox(), find);
 
         Alert findBookAlert = createEmptyDialog(Constant.SEARCH, searchBookForm.getVBox());
         findBookAlert.getButtonTypes().add(ButtonType.CLOSE);
@@ -380,12 +384,6 @@ public class MainForm {
         String middleName = form.getMiddleNameTxt();
         String lastName = form.getLastNameTxt();
         String publishing = form.getPubTxt();
-        String cirString = form.getCirTxt();
-        String volCountTotalString = form.getVolCountTotalTxt();
-
-        String regex = "^\\d+$";
-        int cir = Pattern.matches(regex, cirString) ? Integer.parseInt(cirString) : 0;
-        int volCountTotal = Pattern.matches(regex, volCountTotalString) ? Integer.parseInt(volCountTotalString) : 0;
 
         name = (name.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : name;
         firstName = (firstName.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : firstName;
@@ -393,8 +391,7 @@ public class MainForm {
         lastName = (lastName.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : lastName;
         publishing = (publishing.equals(Constant.EMPTY_STRING)) ? Constant.WHITE_SPACE : publishing;
 
-        Book validBook = new Book(name, firstName, middleName, lastName, publishing, 0, cir);
-        validBook.setVolumeCountTotal(volCountTotal);
+        Book validBook = new Book(name, firstName, middleName, lastName, publishing, 0, 0);
 
         return validBook;
     }

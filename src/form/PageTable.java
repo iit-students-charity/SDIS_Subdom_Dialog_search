@@ -1,7 +1,6 @@
 package form;
 
 import java.lang.String;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +28,7 @@ public class PageTable {
 
     private VBox rootVBox;
 
-    private int countOfBooksOnPage;
+    private int countOfBooksOnPageRepresent;
     private int countOfBooks;
     private int currentPage;
     private int countOfPages;
@@ -46,7 +45,7 @@ public class PageTable {
         rootVBox = new VBox(bookTable, paginationBox);
         rootVBox.setSpacing(10);
 
-        countOfBooksOnPage = 0;
+        countOfBooksOnPageRepresent = 10;
         currentPage = 1;
         countOfPages = 1;
     }
@@ -83,7 +82,7 @@ public class PageTable {
     }
 
     private HBox createPaginationBox() {
-        booksCounterLabel = new Label(String.valueOf(countOfBooksOnPage) + '/' + String.valueOf(books.size()));
+        booksCounterLabel = new Label(String.valueOf(countOfBooksOnPageRepresent) + '/' + String.valueOf(books.size()));
         countOfBooksOnPageTextField = new TextField();
 
         Button nextPage = new Button(Constant.NEXT_PAGE);
@@ -111,6 +110,7 @@ public class PageTable {
         countOfBooksOnPageTextField.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
                 updateCountOfBooksOnPage();
+                updateBooksCounterLabel();
             }
         });
 
@@ -119,7 +119,7 @@ public class PageTable {
                 30,
                 createHBox(5, new Label(Constant.BOOKS), booksCounterLabel),
                 new Separator(Orientation.VERTICAL),
-                createHBox(15, new Label(Constant.COUNT_OF_BOOKS_ON_PAGE), countOfBooksOnPageTextField),
+                createHBox(5, new Label(Constant.COUNT_OF_BOOKS_ON_PAGE), countOfBooksOnPageTextField),
                 new Separator(Orientation.VERTICAL),
                 createHBox(5, firstPage, prevPage, pagesCounterLabel, nextPage, lastPage)
         );
@@ -136,42 +136,16 @@ public class PageTable {
     // Updaters
     public void updateCountOfBooks() {
         countOfBooks = books.size();
-        if (countOfBooksOnPage == 0) {
-            countOfBooksOnPage = 10;
-        }
+        updateCurrentBooks();
         updateCountOfPages();
-        booksCounterLabel.setText(String.valueOf(countOfBooksOnPage) + '/' + String.valueOf(countOfBooks));
+        updateBooksCounterLabel();
         updateCurrentPage(controlType.FIRST);
-    }
-
-    private void updateCountOfBooksOnPage() {
-        try {
-            countOfBooksOnPage = Integer.parseInt(countOfBooksOnPageTextField.getText());
-        } catch (NumberFormatException ex) {
-            return;
-        }
-        booksCounterLabel.setText(String.valueOf(countOfBooksOnPage) + '/' + String.valueOf(countOfBooks));
-        updateCountOfPages();
     }
 
     private void updateCountOfPages() {
-        countOfPages = countOfBooks % countOfBooksOnPage > 0 ?
-                countOfBooks / countOfBooksOnPage + 1 : countOfBooks / countOfBooksOnPage;
+        countOfPages = countOfBooks % countOfBooksOnPageRepresent > 0 ?
+                countOfBooks / countOfBooksOnPageRepresent + 1 : countOfBooks / countOfBooksOnPageRepresent;
         updateCurrentPage(controlType.FIRST);
-    }
-
-    private void updateCurrentBooks() {
-        int toIndex = currentPage * countOfBooksOnPage;
-
-        if (toIndex >= countOfBooks) {
-            toIndex = countOfBooks;
-        }
-
-        currentBooks.clear();
-        currentBooks.addAll(books.subList(
-                (currentPage - 1) * countOfBooksOnPage,
-                toIndex
-        ));
     }
 
     public void updateCurrentPage(controlType type) {
@@ -180,7 +154,6 @@ public class PageTable {
                 if (currentPage < countOfPages) {
                     currentPage++;
                 }
-                System.out.println(currentPage);
 
                 break;
             }
@@ -204,6 +177,47 @@ public class PageTable {
         }
         pagesCounterLabel.setText(String.valueOf(currentPage) + '/' + String.valueOf(countOfPages));
         updateCurrentBooks();
+    }
+
+    private void updateCurrentBooks() {
+        int toIndex = currentPage * countOfBooksOnPageRepresent;
+
+        if (toIndex >= countOfBooks) {
+            toIndex = countOfBooks;
+        }
+
+        currentBooks.clear();
+        currentBooks.addAll(books.subList(
+                (currentPage - 1) * countOfBooksOnPageRepresent,
+                toIndex
+        ));
+    }
+
+    private void updateCountOfBooksOnPage() {
+        if (currentBooks.size() == 0) {
+            countOfBooksOnPageRepresent = 10;
+            return;
+        }
+
+        try {
+            countOfBooksOnPageRepresent = Integer.parseInt(countOfBooksOnPageTextField.getText());
+
+            if (countOfBooksOnPageRepresent > books.size()) {
+                countOfBooksOnPageRepresent = books.size();
+            }
+
+            if (countOfBooksOnPageRepresent <= 0) {
+                return;
+            }
+        } catch (NumberFormatException ex) {
+            return;
+        }
+        updateBooksCounterLabel();
+        updateCountOfPages();
+    }
+
+    private void updateBooksCounterLabel() {
+        booksCounterLabel.setText(String.valueOf(currentBooks.size()) + '/' + String.valueOf(countOfBooks));
     }
 
     // Getters

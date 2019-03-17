@@ -7,7 +7,8 @@ import javafx.collections.ObservableList;
 import java.util.Random;
 
 public class BookGenerator {
-    private static final int booksMaxCount = 100;
+    private static final int booksMaxCount = 150;
+    private static final int booksMinCount = 50;
     private static final int volumeMaxCount = 5;
     private static final int cirMaxCount = 5000;
 
@@ -15,7 +16,7 @@ public class BookGenerator {
     public ObservableList<Book> generate() {
         ObservableList<Book> books = FXCollections.observableArrayList();
 
-        int booksSize = new Random().nextInt(booksMaxCount);
+        int booksSize = new Random().nextInt(booksMaxCount) + booksMinCount;
         for (int bookCounter = 0; bookCounter < booksSize; bookCounter++) {
             books.add(new Book(
                 getRandomItem(BookData.name),

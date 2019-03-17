@@ -16,8 +16,6 @@ public class ParameterForm {
     private TextField middleNameTxtField;
     private TextField lastNameTxtField;
     private TextField pubTxtField;
-    private TextField volCountTotalTxtField;
-    private TextField cirTxtField;
     private TextField countUpLimit;
     private TextField countDownLimit;
     private TextField countBorder;
@@ -36,8 +34,6 @@ public class ParameterForm {
         middleNameTxtField = new TextField();
         lastNameTxtField = new TextField();
         pubTxtField = new TextField();
-        volCountTotalTxtField = new TextField();
-        cirTxtField = new TextField();
         countUpLimit = new TextField();
         countDownLimit = new TextField();
         countBorder = new TextField();
@@ -122,7 +118,7 @@ public class ParameterForm {
         Label cirLabel = new Label(Constant.BORDER);
 
         return new VBox(
-                new TwoNodesGrid(cirLabel, cirTxtField).getGridPane(),
+                new TwoNodesGrid(cirLabel, countBorder).getGridPane(),
                 new TwoNodesGrid(less, greater).getGridPane()
         );
     }
@@ -131,7 +127,7 @@ public class ParameterForm {
         Label volCountTotalLabel = new Label(Constant.BORDER);
 
         return new VBox(
-                new TwoNodesGrid(volCountTotalLabel, volCountTotalTxtField).getGridPane(),
+                new TwoNodesGrid(volCountTotalLabel, countBorder).getGridPane(),
                 new TwoNodesGrid(less, greater).getGridPane()
         );
     }
@@ -155,14 +151,6 @@ public class ParameterForm {
 
     public String getPubTxt() {
         return pubTxtField.getText();
-    }
-
-    public String getVolCountTotalTxt() {
-        return volCountTotalTxtField.getText();
-    }
-
-    public String getCirTxt() {
-        return cirTxtField.getText();
     }
 
     public String getCountUpLimitTxt() {
