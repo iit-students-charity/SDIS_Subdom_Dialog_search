@@ -2,8 +2,6 @@ package form;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -202,13 +200,13 @@ public class MainForm {
         MenuButton search = new MenuButton();
         MenuButton remove = new MenuButton();
 
-        newFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.NEW_FILE))));
-        openFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.OPEN_FILE))));
-        generateFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.GENERATE_FILE))));
-        saveFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.SAVE_FILE))));
-        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.ADD))));
-        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.SEARCH))));
-        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icons.REMOVE))));
+        newFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.NEW_FILE))));
+        openFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.OPEN_FILE))));
+        generateFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.GENERATE_FILE))));
+        saveFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.SAVE_FILE))));
+        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.ADD))));
+        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.SEARCH))));
+        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.REMOVE))));
 
         newFile.setOnMouseClicked(e -> {
             controller.newFile();
