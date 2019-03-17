@@ -20,6 +20,7 @@ public class Controller {
     }
 
     public void openFile(String filePath) {
+        books.clear();
         new SAXReader(books, filePath).read();
     }
 
