@@ -1,7 +1,7 @@
 package form;
 
 public class Constant {
-    // View' constants
+    // View's constants
     public static final String NAME = "Name";
     public static final String AUTHOR = "Author";
     public static final String FIRST_NAME = "First name";

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/form/MainForm.java" line="293" />
+    <bookmark url="file://$PROJECT_DIR$/src/form/MainForm.java" line="283" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SDIS_Subdom_Dialog_search/form/PageTable$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SDIS_Subdom_Dialog_search/form/PageTable$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SDIS_Subdom_Dialog_search/form/PageTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SDIS_Subdom_Dialog_search/form/PageTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SDIS_Subdom_Dialog_search/form/ParameterForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SDIS_Subdom_Dialog_search/form/ParameterForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/BookData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BookData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Icon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Icon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/form/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/MainForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/PageTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/PageTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/ParameterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/ParameterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,23 +73,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainForm.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/form/MainForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="807">
+              <caret line="394" lean-forward="true" selection-start-line="394" selection-end-line="394" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#MainForm#0;class#MainForm#0" />
                 <element signature="method#createMenuBar#0;class#MainForm#0" />
                 <element signature="method#createFileMenu#0;class#MainForm#0" />
                 <element signature="method#createEditMenu#0;class#MainForm#0" />
                 <element signature="method#createRemoveMenu#0;class#MainForm#0" />
-                <element signature="e#3705#3791#0" />
-                <element signature="e#3830#3927#0" />
-                <element signature="e#3962#4054#0" />
-                <element signature="e#4085#4169#0" />
-                <element signature="e#4199#4290#0" />
-                <element signature="e#4330#4428#0" />
                 <element signature="method#createSearchMenu#0;class#MainForm#0" />
                 <element signature="method#createToolBar#0;class#MainForm#0" />
                 <element signature="method#createAddBookDialog#0;class#MainForm#0" />
@@ -98,57 +102,8 @@
       <file leaf-file-name="Icon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/form/Icon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#addBook#0;class#Controller#0" />
-                <element signature="method#isBookExist#0;class#Controller#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SAXReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/SAXReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-              <folding>
-                <element signature="method#SAXReader#0;class#SAXReader#0" />
-                <element signature="method#read#0;class#SAXReader#0" />
-                <element signature="class#SAXReaderHandler#0;class#SAXReader#0" />
-                <element signature="method#startElement#0;class#SAXReaderHandler#0;class#SAXReader#0" />
-                <element signature="method#endElement#0;class#SAXReaderHandler#0;class#SAXReader#0" />
-                <element signature="method#characters#0;class#SAXReaderHandler#0;class#SAXReader#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/BookData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParameterCondition.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ParameterCondition.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+              <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -156,17 +111,41 @@
       <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/form/Constant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+            <state relative-caret-position="464">
+              <caret line="62" column="77" lean-forward="true" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookData.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controller/BookData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="177" column="31" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="checked.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/icons/checked.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="add.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/icons/add.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="openFile.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/icons/openFile.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="181">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,39 +153,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParameterForm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/form/ParameterForm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
-              <folding>
-                <element signature="method#createVBox#0;class#ParameterForm#0" />
-                <element signature="method#createAuthorVBox#0;class#ParameterForm#0" />
-                <element signature="method#createPubAuthorVBox#0;class#ParameterForm#0" />
-                <element signature="method#createVolCountVBox#0;class#ParameterForm#0" />
-                <element signature="method#createNameVBox#0;class#ParameterForm#0" />
-                <element signature="method#createCirculationVBox#0;class#ParameterForm#0" />
-                <element signature="method#createVolCountTotalVBox#0;class#ParameterForm#0" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name="remove.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/icons/remove.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file leaf-file-name="PageTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/form/PageTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="909">
-              <caret line="228" column="7" lean-forward="true" selection-start-line="228" selection-start-column="7" selection-end-line="228" selection-end-column="7" />
+            <state relative-caret-position="549">
+              <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#createBookTable#0;class#PageTable#0" />
                 <element signature="method#createPaginationBar#0;class#PageTable#0" />
                 <element signature="method#createHBox#0;class#PageTable#0" />
                 <element signature="method#updateCountOfBooks#0;class#PageTable#0" />
-                <element signature="method#updateCountOfPages#0;class#PageTable#0" />
                 <element signature="method#updateCurrentPage#0;class#PageTable#0" />
+                <element signature="method#updateCurrentBooks#0;class#PageTable#0" />
                 <element signature="method#updateCountOfBooksOnPage#0;class#PageTable#0" />
                 <element signature="method#updateBooksCounterLabel#0;class#PageTable#0" />
+                <element signature="e#7473#7474#0" expanded="true" />
+                <element signature="e#7505#7506#0" expanded="true" />
+                <element signature="e#7538#7539#0" expanded="true" />
+                <element signature="e#7569#7570#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -231,9 +201,11 @@
       <find>fou</find>
       <find>fin</find>
       <find>Syste</find>
-      <find>Sys</find>
       <find>setOnAction</find>
       <find>setOnMou</find>
+      <find>Sys</find>
+      <find>createMenuBar</find>
+      <find>createToolBar</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\User\intellijIdeaProjects\SDIS_Subdom_Dialog_search\src</dir>
@@ -290,17 +262,17 @@
         <option value="$PROJECT_DIR$/src/controller/Constant1.java" />
         <option value="$PROJECT_DIR$/src/controller/DOMWriter.java" />
         <option value="$PROJECT_DIR$/src/form/AddBookForm.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/src/controller/BookData.java" />
         <option value="$PROJECT_DIR$/src/controller/BookGenerator.java" />
-        <option value="$PROJECT_DIR$/src/form/ParameterForm.java" />
-        <option value="$PROJECT_DIR$/src/form/Constant.java" />
-        <option value="$PROJECT_DIR$/src/form/PageTable.java" />
         <option value="$PROJECT_DIR$/src/form/Icons.java" />
-        <option value="$PROJECT_DIR$/src/form/Icon.java" />
         <option value="$PROJECT_DIR$/src/controller/SAXReader.java" />
         <option value="$PROJECT_DIR$/src/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/form/ParameterForm.java" />
+        <option value="$PROJECT_DIR$/src/form/Constant.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/form/PageTable.java" />
         <option value="$PROJECT_DIR$/src/form/MainForm.java" />
+        <option value="$PROJECT_DIR$/src/form/Icon.java" />
+        <option value="$PROJECT_DIR$/src/controller/BookData.java" />
       </list>
     </option>
   </component>
@@ -329,6 +301,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -369,9 +343,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -510,11 +482,12 @@
       <workItem from="1552675763532" duration="15879000" />
       <workItem from="1552767600705" duration="40854000" />
       <workItem from="1552915195759" duration="945000" />
+      <workItem from="1552931812415" duration="1382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152446000" />
+    <option name="totallyTimeSpent" value="153828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -530,11 +503,11 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32943678" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32943678" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32943678" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18697916" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18697916" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -567,7 +540,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="53" />
+      <option name="time" value="55" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -575,79 +548,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/form/MainForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1870">
-          <caret line="110" column="29" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#createMenuBar#0;class#MainForm#0" />
-            <element signature="method#createFileMenu#0;class#MainForm#0" />
-            <element signature="method#createEditMenu#0;class#MainForm#0" />
-            <element signature="method#createRemoveMenu#0;class#MainForm#0" />
-            <element signature="e#3705#3791#0" />
-            <element signature="e#3830#3927#0" />
-            <element signature="e#3962#4054#0" />
-            <element signature="e#4085#4169#0" />
-            <element signature="e#4199#4290#0" />
-            <element signature="e#4330#4428#0" />
-            <element signature="method#createSearchMenu#0;class#MainForm#0" />
-            <element signature="method#createToolBar#0;class#MainForm#0" />
-            <element signature="method#createAddBookDialog#0;class#MainForm#0" />
-            <element signature="method#createRemoveBookDialog#0;class#MainForm#0" />
-            <element signature="method#createSearchBookDialog#0;class#MainForm#0" />
-            <element signature="method#createEmptyDialog#0;class#MainForm#0" />
-            <element signature="method#createOpenFileDialog#0;class#MainForm#0" />
-            <element signature="method#createSaveFileDialog#0;class#MainForm#0" />
-            <element signature="method#generateValidBook#0;class#MainForm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datamodel/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SDIS_Subdom_Dialog_search.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/form/AddBookForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#AddBookForm#0;class#AddBookForm#0" />
-            <element signature="method#initControls#0;class#AddBookForm#0" />
-            <element signature="method#createVBox#0;class#AddBookForm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SDIS_Subdom_Dialog_search.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -732,13 +632,7 @@
     <entry file="file://D:/RESURRECTION/university study materials/2 course/ppvis/pivas_xml_lab/XmlParser/src/main/java/model/XmlTag.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/PPvIS_Lab_2-master/PPvIS_Lab_2-master/src/View/MyFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
-          <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/PPvIS_Lab_2-master/PPvIS_Lab_2-master/src/View/MyFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/AddBookDialogController.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Integer.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -847,57 +741,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/form/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/form/ParameterForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
-          <folding>
-            <element signature="method#createVBox#0;class#ParameterForm#0" />
-            <element signature="method#createAuthorVBox#0;class#ParameterForm#0" />
-            <element signature="method#createPubAuthorVBox#0;class#ParameterForm#0" />
-            <element signature="method#createVolCountVBox#0;class#ParameterForm#0" />
-            <element signature="method#createNameVBox#0;class#ParameterForm#0" />
-            <element signature="method#createCirculationVBox#0;class#ParameterForm#0" />
-            <element signature="method#createVolCountTotalVBox#0;class#ParameterForm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ParameterCondition.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/form/Icon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/BookData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -918,7 +765,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="136">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -928,40 +775,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/form/ParameterForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+          <folding>
+            <element signature="method#createVBox#0;class#ParameterForm#0" />
+            <element signature="method#createAuthorVBox#0;class#ParameterForm#0" />
+            <element signature="method#createPubAuthorVBox#0;class#ParameterForm#0" />
+            <element signature="method#createVolCountVBox#0;class#ParameterForm#0" />
+            <element signature="method#createNameVBox#0;class#ParameterForm#0" />
+            <element signature="method#createCirculationVBox#0;class#ParameterForm#0" />
+            <element signature="method#createVolCountTotalVBox#0;class#ParameterForm#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/icons/newFile.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/icons/generateFile.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/icons/checked.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/icons/add.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/icons/openFile.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/icons/remove.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/form/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="62" column="77" lean-forward="true" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/form/PageTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="909">
-          <caret line="228" column="7" lean-forward="true" selection-start-line="228" selection-start-column="7" selection-end-line="228" selection-end-column="7" />
+        <state relative-caret-position="549">
+          <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#createBookTable#0;class#PageTable#0" />
             <element signature="method#createPaginationBar#0;class#PageTable#0" />
             <element signature="method#createHBox#0;class#PageTable#0" />
             <element signature="method#updateCountOfBooks#0;class#PageTable#0" />
-            <element signature="method#updateCountOfPages#0;class#PageTable#0" />
             <element signature="method#updateCurrentPage#0;class#PageTable#0" />
+            <element signature="method#updateCurrentBooks#0;class#PageTable#0" />
             <element signature="method#updateCountOfBooksOnPage#0;class#PageTable#0" />
             <element signature="method#updateBooksCounterLabel#0;class#PageTable#0" />
+            <element signature="e#7473#7474#0" expanded="true" />
+            <element signature="e#7505#7506#0" expanded="true" />
+            <element signature="e#7538#7539#0" expanded="true" />
+            <element signature="e#7569#7570#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/form/Icon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/form/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="807">
+          <caret line="394" lean-forward="true" selection-start-line="394" selection-end-line="394" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainForm#0;class#MainForm#0" />
             <element signature="method#createMenuBar#0;class#MainForm#0" />
             <element signature="method#createFileMenu#0;class#MainForm#0" />
             <element signature="method#createEditMenu#0;class#MainForm#0" />
             <element signature="method#createRemoveMenu#0;class#MainForm#0" />
-            <element signature="e#3705#3791#0" />
-            <element signature="e#3830#3927#0" />
-            <element signature="e#3962#4054#0" />
-            <element signature="e#4085#4169#0" />
-            <element signature="e#4199#4290#0" />
-            <element signature="e#4330#4428#0" />
             <element signature="method#createSearchMenu#0;class#MainForm#0" />
             <element signature="method#createToolBar#0;class#MainForm#0" />
             <element signature="method#createAddBookDialog#0;class#MainForm#0" />
@@ -972,6 +876,13 @@
             <element signature="method#createSaveFileDialog#0;class#MainForm#0" />
             <element signature="method#generateValidBook#0;class#MainForm#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/BookData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="177" column="31" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
         </state>
       </provider>
     </entry>

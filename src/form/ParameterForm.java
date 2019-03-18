@@ -48,7 +48,7 @@ public class ParameterForm {
 
         vBox = createVBox();
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(10);
+        vBox.setSpacing(5);
     }
 
     // Box creating

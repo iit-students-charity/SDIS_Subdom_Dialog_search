@@ -148,6 +148,10 @@ public class PageTable {
     }
 
     private void updateCountOfPages() {
+        if (currentBooks.size() == 0) {
+            return;
+        }
+
         countOfPages = countOfBooks % countOfBooksOnPageRepresent > 0 ?
                 countOfBooks / countOfBooksOnPageRepresent + 1 : countOfBooks / countOfBooksOnPageRepresent;
         updateCurrentPage(controlType.FIRST);

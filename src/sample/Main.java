@@ -24,6 +24,7 @@ public class Main extends Application {
         primaryStage.setWidth(FORM_WIDTH);
         primaryStage.setHeight(FORM_HEIGHT);
         primaryStage.setTitle(FORM_TITLE);
+        primaryStage.setResizable(false);
 
         primaryStage.setScene(new Scene(mainForm.getVBox()));
 

@@ -175,7 +175,6 @@ public class BookData {
             "Bloomsbury",
             "Simon & Schuster",
             "Faber Independent Alliance",
-            "John Wiley & Sons",
-            "Bloomsbury Publishing Plc"
+            "John Wiley & Sons"
     };
 }

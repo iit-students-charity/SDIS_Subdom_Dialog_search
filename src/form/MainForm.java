@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import controller.SearchStrategy;
 import datamodel.Book;
@@ -19,9 +18,6 @@ import java.io.File;
 import java.util.regex.Pattern;
 
 public class MainForm {
-    private MenuBar menuBar;
-    private ToolBar toolBar;
-    private VBox pageTableVBox;
     private PageTable pageTable;
 
     private VBox vBox;
@@ -32,18 +28,12 @@ public class MainForm {
 
 
     public MainForm(Controller controller, ObservableList<Book> books, Stage ownerStage) {
-        ownerStage.setResizable(false);
-
         this.controller = controller;
         this.books = books;
 
-        menuBar = createMenuBar();
-        toolBar = createToolBar();
         pageTable = new PageTable(books);
-        pageTableVBox = pageTable.getRootVBox();
 
-        vBox = new VBox(menuBar, pageTableVBox, toolBar);
-        VBox.setVgrow(pageTableVBox, Priority.ALWAYS);
+        vBox = new VBox(createMenuBar(), pageTable.getRootVBox(), createToolBar());
         this.ownerStage = ownerStage;
     }
 
@@ -208,9 +198,9 @@ public class MainForm {
         openFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.OPEN_FILE))));
         generateFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.GENERATE_FILE))));
         saveFile.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.SAVE_FILE))));
-        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.ADD))));
-        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.SEARCH))));
-        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.REMOVE))));
+        add.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.ADD_BOOK))));
+        search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.SEARCH_BOOK))));
+        remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.REMOVE_BOOK))));
 
         newFile.setOnAction(e -> {
             controller.newFile();
@@ -347,7 +337,6 @@ public class MainForm {
             String upLimitString = searchBookForm.getCountUpLimitTxt();
             String downLimitString = searchBookForm.getCountDownLimitTxt();
             String borderString = searchBookForm.getCountBorderTxt();
-            System.out.println(borderString);
 
             String regex = "^\\d+$";
             int upLimit = Pattern.matches(regex, upLimitString) ? Integer.parseInt(upLimitString) : 0;
