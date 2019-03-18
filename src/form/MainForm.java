@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import controller.SearchStrategy;
 import datamodel.Book;
@@ -31,6 +32,8 @@ public class MainForm {
 
 
     public MainForm(Controller controller, ObservableList<Book> books, Stage ownerStage) {
+        ownerStage.setResizable(false);
+
         this.controller = controller;
         this.books = books;
 
@@ -40,6 +43,7 @@ public class MainForm {
         pageTableVBox = pageTable.getRootVBox();
 
         vBox = new VBox(menuBar, pageTableVBox, toolBar);
+        VBox.setVgrow(pageTableVBox, Priority.ALWAYS);
         this.ownerStage = ownerStage;
     }
 
@@ -66,7 +70,7 @@ public class MainForm {
 
         newFile.setOnAction(e -> {
             controller.newFile();
-            pageTable.updateCurrentPage(PageTable.controlType.FIRST);
+            pageTable.updateCountOfBooks();
         });
 
         generate.setOnAction(e -> {
@@ -208,12 +212,12 @@ public class MainForm {
         search.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.SEARCH))));
         remove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(Icon.REMOVE))));
 
-        newFile.setOnMouseClicked(e -> {
+        newFile.setOnAction(e -> {
             controller.newFile();
             pageTable.updateCountOfBooks();
         });
 
-        generateFile.setOnMouseClicked(e -> {
+        generateFile.setOnAction(e -> {
             controller.generateFile();
             pageTable.updateCountOfBooks();
         });
@@ -236,7 +240,7 @@ public class MainForm {
             }
         });
 
-        add.setOnMouseClicked(e -> {
+        add.setOnAction(e -> {
             createAddBookDialog().show();
         });
 
@@ -260,7 +264,7 @@ public class MainForm {
         ButtonType ADD = new ButtonType(Constant.ADD);
         addBookAlert.getDialogPane().getButtonTypes().add(ADD);
         Button addButton = (Button) addBookAlert.getDialogPane().lookupButton(ADD);
-        addButton.setOnMouseClicked(e -> {
+        addButton.setOnAction(e -> {
             int tempVolumeCount;
             int tempCirculation;
 
@@ -303,7 +307,7 @@ public class MainForm {
         ButtonType REMOVE = new ButtonType(Constant.REMOVE);
         removeBookAlert.getDialogPane().getButtonTypes().add(REMOVE);
         Button removeButton = (Button) removeBookAlert.getDialogPane().lookupButton(REMOVE);
-        removeButton.setOnMouseClicked(e -> {
+        removeButton.setOnAction(e -> {
             String upLimitString = removeBookForm.getCountUpLimitTxt();
             String downLimitString = removeBookForm.getCountDownLimitTxt();
             String borderString = removeBookForm.getCountBorderTxt();
@@ -339,7 +343,7 @@ public class MainForm {
         PageTable foundBooksPageTable = new PageTable(foundBooks);
 
         Button find = new Button(Constant.FIND);
-        find.setOnMouseClicked(e -> {
+        find.setOnAction(e -> {
             String upLimitString = searchBookForm.getCountUpLimitTxt();
             String downLimitString = searchBookForm.getCountDownLimitTxt();
             String borderString = searchBookForm.getCountBorderTxt();
