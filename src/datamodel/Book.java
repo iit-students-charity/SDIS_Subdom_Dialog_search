@@ -59,10 +59,6 @@ public class Book {
         return volumeCountTotal;
     }
 
-    public void setVolumeCountTotal(int volumeCountTotal) {
-        this.volumeCountTotal = volumeCountTotal;
-    }
-
     public boolean equals(Book book) {
         return name.equals(book.name) && firstName.equals(book.firstName) &&
                 middleName.equals(book.middleName) && lastName.equals(book.lastName) &&

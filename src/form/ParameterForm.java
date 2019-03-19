@@ -142,11 +142,11 @@ public class ParameterForm {
     }
 
     public String getMiddleNameTxt()  {
-        return firstNameTxtField.getText();
+        return middleNameTxtField.getText();
     }
 
     public String getLastNameTxt() {
-        return firstNameTxtField.getText();
+        return lastNameTxtField.getText();
     }
 
     public String getPubTxt() {

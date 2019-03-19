@@ -56,7 +56,6 @@ public class SearchStrategy {
             case VOLUME_COUNT: {
                 for (Book book : books) {
                     if (book.getVolumeCount() <= countUpLimit && book.getVolumeCount() >= countDownLimit) {
-                        System.out.println(book.getVolumeCount());
                         foundBooks.add(book);
                     }
                 }

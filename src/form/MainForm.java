@@ -254,6 +254,7 @@ public class MainForm {
         ButtonType ADD = new ButtonType(Constant.ADD);
         addBookAlert.getDialogPane().getButtonTypes().add(ADD);
         Button addButton = (Button) addBookAlert.getDialogPane().lookupButton(ADD);
+
         addButton.setOnAction(e -> {
             int tempVolumeCount;
             int tempCirculation;
@@ -275,11 +276,21 @@ public class MainForm {
                 if (isNameValid && isAuthorValid) {
                     Book book = new Book(name, firstName, middleName, lastName, addBookForm.getPubTxt(),
                             tempVolumeCount, tempCirculation);
+
+                    for (Book curBook : books) {
+                        if (curBook.equals(book)) {
+                            return;
+                        }
+                    }
+
                     controller.addBook(book);
                 }
             } catch (Exception ex) {
                 Alert info = createEmptyDialog(Constant.ERROR, new Label(Constant.INVALID_INPUT_DATA));
                 info.getButtonTypes().add(ButtonType.OK);
+                info.setOnCloseRequest(event -> {
+                    addBookAlert.show();
+                });
                 info.show();
             }
 
@@ -350,6 +361,7 @@ public class MainForm {
             foundBooks.clear();
             foundBooks.addAll(new SearchStrategy(books, condition, generateValidBook(searchBookForm),
                     upLimit, downLimit, border, isGreaterThanBorder).find());
+            System.out.println(generateValidBook(searchBookForm).getMiddleName());
             foundBooksPageTable.updateCountOfBooks();
         });
 

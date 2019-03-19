@@ -4,7 +4,6 @@ import java.lang.String;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 
 import javafx.scene.Node;
@@ -12,21 +11,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import datamodel.Book;
 
 public class PageTable {
-    public enum controlType {FIRST, PREV, NEXT, LAST}
+    public enum controlType { FIRST, PREV, NEXT, LAST }
 
 
     private TableView<Book> bookTable;
     private TextField countOfBooksOnPageTextField;
     private Label booksCounterLabel;
     private Label pagesCounterLabel;
-    private ToolBar paginationBar;
 
     private VBox rootVBox;
 
@@ -42,9 +38,8 @@ public class PageTable {
         this.books = books;
         currentBooks = FXCollections.observableArrayList();
         bookTable = createBookTable();
-        paginationBar = createPaginationBar();
 
-        rootVBox = new VBox(bookTable, paginationBar);
+        rootVBox = new VBox(bookTable, createPaginationBar());
 
         countOfBooksOnPageRepresent = 10;
         currentPage = 1;
@@ -118,16 +113,13 @@ public class PageTable {
             }
         });
 
-        ToolBar toolBar = new ToolBar(
+        return new ToolBar(
                 createHBox(10, new Label(Constant.BOOKS_ON_PAGE), countOfBooksOnPageTextField),
                 new Separator(),
                 createHBox(5, firstPage, prevPage, pagesCounterLabel, nextPage, lastPage),
                 new Separator(),
                 createHBox(5, new Label(Constant.BOOKS), booksCounterLabel)
         );
-
-
-        return toolBar;
     }
 
     private HBox createHBox(int spacing, Node... nodes) {
@@ -149,7 +141,7 @@ public class PageTable {
 
     private void updateCountOfPages() {
         if (currentBooks.size() == 0) {
-            return;
+            countOfPages = currentPage = 1;
         }
 
         countOfPages = countOfBooks % countOfBooksOnPageRepresent > 0 ?

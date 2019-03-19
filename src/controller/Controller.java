@@ -29,23 +29,10 @@ public class Controller {
     }
 
     public void addBook(Book book) {
-        if (isBookExist(book)) {
-            return;
-        }
         books.add(book);
     }
 
     public void removeBook(ObservableList<Book> booksToRemove) {
         books.removeAll(booksToRemove);
-    }
-
-    private boolean isBookExist(Book book) {
-        for (Book curBook : books) {
-            if (curBook.equals(book)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
