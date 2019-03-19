@@ -2,6 +2,7 @@ package form;
 
 import java.lang.String;
 
+import controller.ControllerConstant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -51,19 +52,19 @@ public class PageTable {
         bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         bookTable.setItems(currentBooks);
 
-        TableColumn<Book, String> nameCol = new TableColumn<>(Constant.NAME);
-        TableColumn<Book, String> authorCol = new TableColumn<>(Constant.AUTHOR);
-        TableColumn<Book, String> pubCol = new TableColumn<>(Constant.PUBLISHING);
-        TableColumn<Book, Integer> volCountCol = new TableColumn<>(Constant.VOLUME_COUNT);
-        TableColumn<Book, Integer> cirCol = new TableColumn<>(Constant.CIRCULATION);
-        TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>(Constant.VOLUME_COUNT_TOTAL);
+        TableColumn<Book, String> nameCol = new TableColumn<>(ViewConstant.NAME);
+        TableColumn<Book, String> authorCol = new TableColumn<>(ViewConstant.AUTHOR);
+        TableColumn<Book, String> pubCol = new TableColumn<>(ViewConstant.PUBLISHING);
+        TableColumn<Book, Integer> volCountCol = new TableColumn<>(ViewConstant.VOLUME_COUNT);
+        TableColumn<Book, Integer> cirCol = new TableColumn<>(ViewConstant.CIRCULATION);
+        TableColumn<Book, Integer> volCountTotalCol = new TableColumn<>(ViewConstant.VOLUME_COUNT_TOTAL);
 
-        nameCol.setCellValueFactory(new PropertyValueFactory<>(Constant.NAME_FIELD));
-        authorCol.setCellValueFactory(new PropertyValueFactory<>(Constant.AUTHOR_FIELD));
-        pubCol.setCellValueFactory(new PropertyValueFactory<>(Constant.PUBLISHING_FIELD));
-        volCountCol.setCellValueFactory(new PropertyValueFactory<>(Constant.VOLUME_COUNT_FIELD));
-        cirCol.setCellValueFactory(new PropertyValueFactory<>(Constant.CIRCULATION_FIELD));
-        volCountTotalCol.setCellValueFactory(new PropertyValueFactory<>(Constant.VOLUME_COUNT_TOTAL_FIELD));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>(ControllerConstant.NAME_FIELD));
+        authorCol.setCellValueFactory(new PropertyValueFactory<>(ControllerConstant.AUTHOR_FIELD));
+        pubCol.setCellValueFactory(new PropertyValueFactory<>("publishingName"));
+        volCountCol.setCellValueFactory(new PropertyValueFactory<>(ControllerConstant.VOLUME_COUNT_FIELD));
+        cirCol.setCellValueFactory(new PropertyValueFactory<>("publishingCirculation"));
+        volCountTotalCol.setCellValueFactory(new PropertyValueFactory<>(ControllerConstant.VOLUME_COUNT_TOTAL_FIELD));
 
         nameCol.setSortable(false);
         authorCol.setSortable(false);
@@ -83,11 +84,11 @@ public class PageTable {
         countOfBooksOnPageTextField = new TextField();
         countOfBooksOnPageTextField.setPrefWidth(50);
 
-        Button nextPage = new Button(Constant.NEXT_PAGE);
-        Button prevPage = new Button(Constant.PREV_PAGE);
+        Button nextPage = new Button(ViewConstant.NEXT_PAGE);
+        Button prevPage = new Button(ViewConstant.PREV_PAGE);
         pagesCounterLabel = new Label("1/1");
-        Button firstPage = new Button(Constant.FIRST_PAGE);
-        Button lastPage = new Button(Constant.LAST_PAGE);
+        Button firstPage = new Button(ViewConstant.FIRST_PAGE);
+        Button lastPage = new Button(ViewConstant.LAST_PAGE);
 
 
         nextPage.setOnAction(e -> {
@@ -114,11 +115,11 @@ public class PageTable {
         });
 
         return new ToolBar(
-                createHBox(10, new Label(Constant.BOOKS_ON_PAGE), countOfBooksOnPageTextField),
+                createHBox(10, new Label(ViewConstant.BOOKS_ON_PAGE), countOfBooksOnPageTextField),
                 new Separator(),
                 createHBox(5, firstPage, prevPage, pagesCounterLabel, nextPage, lastPage),
                 new Separator(),
-                createHBox(5, new Label(Constant.BOOKS), booksCounterLabel)
+                createHBox(5, new Label(ViewConstant.BOOKS), booksCounterLabel)
         );
     }
 

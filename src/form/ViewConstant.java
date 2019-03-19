@@ -1,6 +1,6 @@
 package form;
 
-public class Constant {
+public class ViewConstant {
     // View's constants
     public static final String NAME = "Name";
     public static final String AUTHOR = "Author";
@@ -39,26 +39,4 @@ public class Constant {
     public static final String BORDER = "Border";
     public static final String LESS = "Less";
     public static final String GREATER = "Greater";
-
-    // Controller's constants
-    public static final String ROOT_XML_NAME = "library";
-    public static final String BOOK_XML_NAME = "book";
-    public static final String NAME_FIELD = "name";
-    public static final String AUTHOR_FIELD = "author";
-
-    public static final String LAST_NAME_XML_NAME = "last_name";
-
-    public static final String FIRST_NAME_XML_NAME = "first_name";
-
-    public static final String MIDDLE_NAME_XML_NAME = "middle_name";
-
-    public static final String PUBLISHING_FIELD = "publishing";
-
-    public static final String VOLUME_COUNT_XML_NAME = "volume_count";
-    public static final String VOLUME_COUNT_FIELD = "volumeCount";
-
-    public static final String CIRCULATION_FIELD = "circulation";
-
-    public static final String VOLUME_COUNT_TOTAL_XML_NAME = "volume_count_total";
-    public static final String VOLUME_COUNT_TOTAL_FIELD = "volumeCountTotal";
 }

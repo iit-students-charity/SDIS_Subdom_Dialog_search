@@ -1,7 +1,7 @@
 package controller;
 
 import datamodel.Book;
-import form.Constant;
+import form.ViewConstant;
 import javafx.collections.ObservableList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -46,7 +46,7 @@ public class SAXReader {
         private String firstName;
         private String middleName;
         private String lastName;
-        private String publishing;
+        private String publishingName;
         private String volumeCount;
         private String circulation;
 
@@ -59,7 +59,7 @@ public class SAXReader {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            String[] param = { name, lastName, firstName, middleName, publishing, volumeCount, circulation };
+            String[] param = { name, lastName, firstName, middleName, publishingName, volumeCount, circulation };
 
             for (String parameter : param) {
                 if (parameter == null || parameter.isEmpty()) {
@@ -79,13 +79,13 @@ public class SAXReader {
                 circulationInt = -1;
             }
 
-            books.add(new Book(name, firstName, middleName, lastName, publishing, volumeCountInt, circulationInt));
+            books.add(new Book(name, firstName, middleName, lastName, publishingName, volumeCountInt, circulationInt));
 
             name = null;
             lastName = null;
             firstName = null;
             middleName = null;
-            publishing = null;
+            publishingName = null;
             volumeCount = null;
             circulation = null;
         }
@@ -94,35 +94,35 @@ public class SAXReader {
         public void characters(char[] ch, int start, int length) throws SAXException {
             String nodeText = new String(ch, start, length);
 
-            nodeText = nodeText.replace("\n", Constant.EMPTY_STRING).trim();
+            nodeText = nodeText.replace("\n", ViewConstant.EMPTY_STRING).trim();
 
             if (!nodeText.isEmpty()) {
-                if (lastElementName.equals(Constant.NAME_FIELD)) {
+                if (lastElementName.equals(ControllerConstant.NAME_FIELD)) {
                     name = nodeText;
                 }
 
-                if (lastElementName.equals(Constant.LAST_NAME_XML_NAME)) {
+                if (lastElementName.equals(ControllerConstant.LAST_NAME_XML_FIELD)) {
                     lastName = nodeText;
                 }
 
-                if (lastElementName.equals(Constant.FIRST_NAME_XML_NAME)) {
+                if (lastElementName.equals(ControllerConstant.FIRST_NAME_XML_FIELD)) {
                     firstName = nodeText;
                 }
 
-                if (lastElementName.equals(Constant.MIDDLE_NAME_XML_NAME)) {
+                if (lastElementName.equals(ControllerConstant.MIDDLE_NAME_XML_FIELD)) {
                     middleName = nodeText;
                 }
 
-                if (lastElementName.equals(Constant.PUBLISHING_FIELD)) {
-                    publishing = nodeText;
+                if (lastElementName.equals(ControllerConstant.PUBLISHING_NAME_XML_FIELD)) {
+                    publishingName = nodeText;
                 }
 
-                if (lastElementName.equals(Constant.VOLUME_COUNT_XML_NAME)) {
-                    volumeCount = nodeText;
-                }
-
-                if (lastElementName.equals(Constant.CIRCULATION_FIELD)) {
+                if (lastElementName.equals(ControllerConstant.CIRCULATION_FIELD)) {
                     circulation = nodeText;
+                }
+
+                if (lastElementName.equals(ControllerConstant.VOLUME_COUNT_XML_FIELD)) {
+                    volumeCount = nodeText;
                 }
             }
         }

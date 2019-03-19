@@ -2,67 +2,49 @@ package datamodel;
 
 public class Book {
     private String name;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String publishing;
+    private Author author;
     private int volumeCount;
-    private int circulation;
-    private int volumeCountTotal;
+    private Publishing publishing;
 
 
-    public Book(String name, String firstName, String middleName, String lastName, String publishing,
+    public Book(String name, String firstName, String middleName, String lastName, String publishingName,
                 int volumeCount, int circulation) {
         this.name = name;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.publishing = publishing;
+        author = new Author(firstName, middleName, lastName);
         this.volumeCount = volumeCount;
-        this.circulation = circulation;
-        volumeCountTotal = this.volumeCount * this.circulation;
+        this.publishing = new Publishing(publishingName, circulation);
     }
 
     public String getName() {
         return name;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Author getAuthor() {
+        return author;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getAuthor() {
-        return lastName + ' ' + firstName.toCharArray()[0] + '.' + middleName.toCharArray()[0] + '.';
-    }
-
-    public String getPublishing() {
+    public Publishing getPublishing() {
         return publishing;
+    }
+
+    public String getPublishingName() {
+        return publishing.getName();
+    }
+
+    public int getPublishingCirculation() {
+        return publishing.getCirculation();
     }
 
     public int getVolumeCount() {
         return volumeCount;
     }
 
-    public int getCirculation() {
-        return circulation;
-    }
-
     public int getVolumeCountTotal() {
-        return volumeCountTotal;
+        return volumeCount * publishing.getCirculation();
     }
 
     public boolean equals(Book book) {
-        return name.equals(book.name) && firstName.equals(book.firstName) &&
-                middleName.equals(book.middleName) && lastName.equals(book.lastName) &&
-                publishing.equals(book.publishing) && (volumeCount == book.volumeCount) &&
-                (circulation == book.circulation);
+        return name.equals(book.name) && author.equals(book.author) &&
+                publishing.equals(book.publishing) && (volumeCount == book.volumeCount);
     }
 }

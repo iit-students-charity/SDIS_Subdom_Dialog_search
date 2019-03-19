@@ -32,9 +32,7 @@ public class SearchStrategy {
         switch (condition) {
             case AUTHOR: {
                 for (Book book : books) {
-                    if (book.getFirstName().equals(exampleBook.getFirstName()) &&
-                            book.getMiddleName().equals(exampleBook.getMiddleName()) &&
-                            book.getLastName().equals(exampleBook.getLastName())) {
+                    if (book.getAuthor().equals(exampleBook.getAuthor())) {
                         foundBooks.add(book);
                     }
                 }
@@ -43,9 +41,7 @@ public class SearchStrategy {
             }
             case PUBLISHING_AUTHOR: {
                 for (Book book : books) {
-                    if (book.getFirstName().equals(exampleBook.getFirstName()) &&
-                            book.getMiddleName().equals(exampleBook.getMiddleName()) &&
-                            book.getLastName().equals(exampleBook.getLastName()) &&
+                    if (book.getAuthor().equals(exampleBook.getAuthor()) &&
                             book.getPublishing().equals(exampleBook.getPublishing())) {
                         foundBooks.add(book);
                     }
@@ -74,13 +70,13 @@ public class SearchStrategy {
             case CIRCULATION: {
                 if (isGreaterThanBorder) {
                     for (Book book : books) {
-                        if (book.getCirculation() > countBorder) {
+                        if (book.getPublishing().getCirculation() > countBorder) {
                             foundBooks.add(book);
                         }
                     }
                 } else {
                     for (Book book : books) {
-                        if (book.getCirculation() < countBorder) {
+                        if (book.getPublishing().getCirculation() < countBorder) {
                             foundBooks.add(book);
                         }
                     }
