@@ -18,13 +18,6 @@ public class AddBookForm {
 
 
     public AddBookForm() {
-        initControls();
-
-        vBox = createVBox();
-        vBox.setAlignment(Pos.CENTER);
-    }
-
-    private void initControls() {
         nameTxtField = new TextField();
         firstNameTxtField = new TextField();
         middleNameTxtField = new TextField();
@@ -32,6 +25,9 @@ public class AddBookForm {
         pubTxtField = new TextField();
         volCountTxtField = new TextField();
         cirTxtField = new TextField();
+
+        vBox = createVBox();
+        vBox.setAlignment(Pos.CENTER);
     }
 
     private VBox createVBox() {
