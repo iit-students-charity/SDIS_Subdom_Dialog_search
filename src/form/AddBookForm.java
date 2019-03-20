@@ -13,13 +13,6 @@ public class AddBookForm {
     private TextField pubTxtField;
     private TextField volCountTxtField;
     private TextField cirTxtField;
-    private Label nameLabel;
-    private Label firstNameLabel;
-    private Label middleNameLabel;
-    private Label lastNameLabel;
-    private Label pubLabel;
-    private Label volCountLabel;
-    private Label cirLabel;
 
     private VBox vBox;
 
@@ -39,25 +32,17 @@ public class AddBookForm {
         pubTxtField = new TextField();
         volCountTxtField = new TextField();
         cirTxtField = new TextField();
-
-        nameLabel = new Label(ViewConstant.NAME);
-        firstNameLabel = new Label(ViewConstant.FIRST_NAME);
-        middleNameLabel = new Label(ViewConstant.MIDDLE_NAME);
-        lastNameLabel = new Label(ViewConstant.LAST_NAME);
-        pubLabel = new Label(ViewConstant.PUBLISHING);
-        volCountLabel = new Label(ViewConstant.VOLUME_COUNT);
-        cirLabel = new Label(ViewConstant.CIRCULATION);
     }
 
     private VBox createVBox() {
         return new VBox(
-                new TwoNodesGrid(nameLabel, nameTxtField).getGridPane(),
-                new TwoNodesGrid(firstNameLabel, firstNameTxtField).getGridPane(),
-                new TwoNodesGrid(middleNameLabel, middleNameTxtField).getGridPane(),
-                new TwoNodesGrid(lastNameLabel, lastNameTxtField).getGridPane(),
-                new TwoNodesGrid(pubLabel, pubTxtField).getGridPane(),
-                new TwoNodesGrid(volCountLabel, volCountTxtField).getGridPane(),
-                new TwoNodesGrid(cirLabel, cirTxtField).getGridPane()
+                new TwoNodesGrid(new Label(ViewConstant.NAME), nameTxtField).getGridPane(),
+                new TwoNodesGrid(new Label(ViewConstant.FIRST_NAME), firstNameTxtField).getGridPane(),
+                new TwoNodesGrid(new Label(ViewConstant.MIDDLE_NAME), middleNameTxtField).getGridPane(),
+                new TwoNodesGrid(new Label(ViewConstant.LAST_NAME), lastNameTxtField).getGridPane(),
+                new TwoNodesGrid(new Label(ViewConstant.PUBLISHING), pubTxtField).getGridPane(),
+                new TwoNodesGrid(new Label(ViewConstant.VOLUME_COUNT), volCountTxtField).getGridPane(),
+                new TwoNodesGrid(new Label(ViewConstant.CIRCULATION), cirTxtField).getGridPane()
         );
     }
 

@@ -21,11 +21,11 @@ public class Controller {
 
     public void openFile(String filePath) {
         books.clear();
-        new SAXReader(books, filePath).read();
+        new FileProcessor(filePath).read(books);
     }
 
     public void saveFile(String filePath) {
-        new DOMWriter(books, filePath).write();
+        new FileProcessor(filePath).write(books);
     }
 
     public void addBook(Book book) {

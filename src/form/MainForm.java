@@ -418,8 +418,6 @@ public class MainForm {
         lastName = (lastName.equals(ViewConstant.EMPTY_STRING)) ? ViewConstant.WHITE_SPACE : lastName;
         publishing = (publishing.equals(ViewConstant.EMPTY_STRING)) ? ViewConstant.WHITE_SPACE : publishing;
 
-        Book validBook = new Book(name, firstName, middleName, lastName, publishing, 0, 0);
-
-        return validBook;
+        return new Book(name, firstName, middleName, lastName, publishing, 0, 0);
     }
 }
